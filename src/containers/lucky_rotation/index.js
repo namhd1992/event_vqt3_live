@@ -468,7 +468,13 @@ class Lucky_Rotation extends React.Component {
    			this.setState({intervalId: intervalId, isSpin: true, closeAuto:false, wheelSpinning: false});
 			
 		}else{
-			if(itemBonus.type!=="ACTION"){
+			if(itemBonus.AwardId===12){
+				$('#myModal11').modal('show');
+				this.setState({message_error: 'Bạn đã quay vào ô mất lượt.'});		
+			}else if(itemBonus.AwardId===11){
+				$('#myModal11').modal('show');
+				this.setState({message_error: 'Chúc bạn may mắn lần sau.'});
+			}else{
 				$('#myModal4').modal('show');
 			}
 			this.setState({isSpin: false, closeAuto:true, wheelSpinning: false});
@@ -494,6 +500,7 @@ class Lucky_Rotation extends React.Component {
 	getDetailData=()=>{
 		const {auto}=this.state;
 		var user = JSON.parse(localStorage.getItem("user"));
+		this.getVinhDanh(1);
 		this.props.getDataUserSpin(user.Token).then(()=>{
 			var data=this.props.dataUserSpin;
 			if(data!==undefined){
@@ -558,14 +565,14 @@ class Lucky_Rotation extends React.Component {
 	timeConverter=(time)=>{
 		var start=time.substring(time.indexOf("(") +1,time.indexOf(")"));
 		var a = new Date(+start);
-		var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+		// var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 		var year = a.getFullYear();
-		var month = months[a.getMonth()];
+		var month = a.getMonth() > 9 ? a.getMonth() : `0${a.getMonth()}`;
 		var date = a.getDate();
 		var hour = a.getHours();
 		var min = a.getMinutes();
 		var sec = a.getSeconds();
-		var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
+		var time = date + '/' + month + '/' + year + ' ' + hour + ':' + min + ':' + sec ;
 		return time;
 	  }
 
@@ -784,7 +791,7 @@ class Lucky_Rotation extends React.Component {
 					<p className="btn-thamgiangay"><a href="#p2" title="Tham gia ngay"><img src={thamgiangay} alt="Tham gia ngay" width="200" className="img-fluid" /></a></p>
 					<div className="position-absolute-p1">
 						<ul className="nav flex-column menu-left-p1">
-							<li className="pt-6"><a href="https://scoin.vn/nap-game" title="Nạp Scoin" target="_blank">Active ViP</a></li>
+							<li className="pt-6"><a href="https://vip.scoin.vn/" title="Active ViP" target="_blank">Active ViP</a></li>
 							{/* <li className="pt-6"><a href="http://sandbox.scoin.vn/nap-vao-game?GameId=330287" title="Nạp Scoin" target="_blank">Nạp Game</a></li> */}
 							<li className="pt-5b"><a href="#" title="Thể lệ" onClick={this.showModalRules}>Thể lệ</a></li>
 							<li className="pt-5b"><a href="#" title="Phần thưởng" onClick={this.showModalBonus}>Phần thưởng</a></li>
@@ -812,7 +819,7 @@ class Lucky_Rotation extends React.Component {
 						
 					</div>
 					<div className="btn-quay">
-						<h5 className="text-center">Còn: {turnsFree} lượt &nbsp;<a className="small" href="#" title="Thêm lượt" data-toggle="modal" data-target="#themluot"><u>Thêm lượt</u></a></h5>
+						<h5 className="text-center">Còn: {turnsFree} lượt &nbsp;</h5>
 						<a style={{cursor:'pointer'}} onClick={this.btnStart}><img src={btn_quay_p2} alt="" className="img-fluid hv" /></a>
 						<div className="custom-control custom-checkbox">
 							<input type="checkbox" className="custom-control-input" id="customCheck" name="autospin" />
@@ -876,9 +883,9 @@ class Lucky_Rotation extends React.Component {
 						<tbody className="top-12">
 						<tr>
 							<td></td>
-							<td>sb_32375.5d***</td>
+							<td>*******</td>
 							<td>iPhone 11 Pro Max 256GB</td>
-							<td>20:00:00 04-11-2019</td>
+							<td>*******</td>
 						</tr>
 						</tbody>
 					</table>
@@ -1105,7 +1112,7 @@ class Lucky_Rotation extends React.Component {
 										<tbody class="popup-tudo">
 											{listHistory.map((obj, key) => (
 												<tr key={key}>
-													<td className="border-right-0">{key}</td>
+													<td className="border-right-0">{key+1 + (activeHistory-1)*10}</td>
 													<td className="border-left-0 border-right-0">{obj.AwardName}</td>
 													<td className="border-left-0">{this.timeConverter(obj.SpinTime)}</td>
 												</tr>
@@ -1340,7 +1347,7 @@ class Lucky_Rotation extends React.Component {
 								))}
 							</ol> 
 							
-							<p className="text-thele">Vào <code><label onClick={this.showModalTuDo}>Tủ đồ</label></code> hoặc <code><label onClick={this.showModalCodeBonus}>Mã dự thưởng</label></code> để xem chi tiết.</p>
+							<p className="text-thele">Vào <code><label onClick={this.showModalTuDo}>Tủ đồ</label></code> để xem chi tiết.</p>
 							<p className="text-thele text-center"><code>Đang quay tự động <span className="spinner-grow spinner-grow-sm"></span></code></p>
 						</div>
 						
@@ -1457,6 +1464,8 @@ class Lucky_Rotation extends React.Component {
 						</div>
 					</div>
 				</div>
+
+				
 
 				<div className="modal fade" id="matluot">
 					<div className="modal-dialog">
