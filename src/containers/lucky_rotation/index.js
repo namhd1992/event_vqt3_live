@@ -1218,38 +1218,16 @@ class Lucky_Rotation extends React.Component {
 						<div className="modal-body bg-chucmung justify-content-center">
 							<div className="card">
 								<div className="card-body content-chucmung mx-auto">
-									{(code)?(
 									<div>
-										<div className="text-chucmung text-center" style={{marginTop:70}}>
-											<span className="text-white">Bạn vừa quay vào ô</span>
-											<span className="pt-1 d-block">Mã số dự thưởng iPhone 11 Pro Max 256GB đã được lưu trong Mã dự thưởng.</span>
-											{/* <span className="pt-1 d-block">Bạn vừa nhận được Mã số dự thưởng giải hiện vật <span style={{fontWeight:'bold'}}>iPhone 11 Pro Max 256GB</span></span> */}
-										</div>
-										{/* <p style={{textAlign:'center', fontSize:30, fontWeight:'bold'}}>{itemBonus.value}</p> */}
-									
-										<p className="small pt-2 mb-2 text-center">So KQ Mã số dự thưởng vào lúc 19:00 ngày 04/11/2019.<br /><label title="Xem phần thưởng" className="underline pt-2 d-block" style={{color:"#fff", cursor:'pointer'}} onClick={this.showModalCodeBonus}>Xem phần thưởng</label></p>
-										<button type="button" className="btn btn-xacnhan text-white btn-block text-center" onClick={this.hideModalDetailBonus}>Xác nhận</button>
-									</div>
-									):(
-									<div>
-										{(scoinCard)?(<div><div className="text-chucmung text-center" style={{marginTop:70}}>
-											<span>Bạn vừa quay vào ô <span style={{color:'red'}}>thẻ Scoin {itemBonus.value}VND</span></span>
-										</div>
-										<p className="small pt-2 mb-2 text-center">(Phần thưởng đã được chuyển vào Tủ đồ sự kiện) <br /><label title="Xem phần thưởng" className="underline pt-2 d-block" style={{color:"#fff", cursor:'pointer'}} onClick={this.showModalTuDo}>Xem phần thưởng</label></p></div>):(
-											<div>
+										<div>
 											<div className="text-chucmung text-center" style={{marginTop:70}}>
-											<span>Bạn vừa nhận được <span style={{color:'red'}}>{itemBonus.value} Scoin</span></span>
+												<span>Bạn vừa nhận được <span style={{color:'red'}}>{itemBonus.AwardName}</span></span>
+											</div>
+											<p className="small pt-2 mb-2 text-center">(Phần thưởng đã được chuyển vào Tủ đồ sự kiện) <br /><label title="Xem phần thưởng" className="underline pt-2 d-block" style={{color:"#fff", cursor:'pointer'}} onClick={this.showModalTuDo}>Xem phần thưởng</label></p>
 										</div>
-										<p className="small pt-2 mb-2 text-center">(Phần thưởng đã được cộng vào ví Scoin)</p>
-										</div>
-										)}
 									
 										<button type="button" className="btn btn-xacnhan text-white btn-block text-center" onClick={this.hideModalDetailBonus}>Xác nhận</button>
 									</div>
-									)}	
-									
-
-
 								</div>
 							</div>
 						</div>
@@ -1444,7 +1422,7 @@ class Lucky_Rotation extends React.Component {
 				</div>
 				</div>
 
-				<div className="modal fade" id="myModal11">
+				<div className="modal fade" id="myModal11" style={{zIndex:10010}}>
 					<div className="modal-dialog">
 						<div className="modal-content popup-phanthuong">
 
