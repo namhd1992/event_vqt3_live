@@ -567,7 +567,8 @@ class Lucky_Rotation extends React.Component {
 		var a = new Date(+start);
 		// var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 		var year = a.getFullYear();
-		var month = a.getMonth() > 9 ? a.getMonth() : `0${a.getMonth()}`;
+		var m=a.getMonth()+1
+		var month =m > 9 ? m : `0${m}`;
 		var date = a.getDate();
 		var hour = a.getHours();
 		var min = a.getMinutes();
