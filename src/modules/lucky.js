@@ -17,7 +17,8 @@ export const LUCKY_CODE_BONUS='lucky/LUCKY_CODE_BONUS';
 export const LUCKY_INFO='lucky/LUCKY_INFO'
 export const LUCKY_ITEMS='lucky/LUCKY_ITEMS'
 export const INFO_USER_RESPONSE='lucky/INFO_USER_RESPONSE'
-export const DATA_USER_SPIN='lucky/DATA_USER_SPIN'
+export const DATA_USER_SPIN='lucky/DATA_USER_SPIN';
+export const ITEM_AWARD='lucky/ITEM_AWARD';
 
 const initialState = {
 	data: [], 
@@ -127,6 +128,12 @@ export default (state = initialState, action) => {
 			return {
 				...state,
 				dataUserSpin: action.data,
+				waiting: false
+			}
+		case ITEM_AWARD:
+			return {
+				...state,
+				dataItemAward: action.data,
 				waiting: false
 			}
 		default:
@@ -334,6 +341,31 @@ export const getHistoryTuDo = (token, limit, offset) => {
 		return axios.get(url, header).then(function (response) {
 			dispatch({
 				type: LUCKY_HISTORY_TU_DO,
+				data: response.data
+			})
+		}).catch(function (error) {
+			dispatch({
+				type: SERVER_ERROR
+			})
+		})
+	}
+}
+
+export const getItemAward = (token, award_id) => {
+	var header = {
+		headers: {
+			"Content-Type": "application/json",
+			"token": token,
+		}
+	}
+	return dispatch => {
+		dispatch({
+			type: LUCKY_REQUEST
+		})
+		var url = Ultilities.base_url() + "luckywheel/user-get-award?award-id=" + award_id;
+		return axios.get(url, header).then(function (response) {
+			dispatch({
+				type: ITEM_AWARD,
 				data: response.data
 			})
 		}).catch(function (error) {

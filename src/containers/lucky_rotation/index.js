@@ -18,7 +18,8 @@ import {
 	getLuckyItems,
 	getInfoUser,
 	userLogout,
-	getDataUserSpin
+	getDataUserSpin,
+	getItemAward
 } from '../../modules/lucky'
 import Wheel from './Winwheel'
 import {
@@ -54,6 +55,8 @@ import img_maduthuong from './images/img-maduthuong.png';
 import img_thongbao from './images/img-thongbao.png';
 import img_livestream from './images/img-livestream.png';
 import img_giaithuong from './images/img-giaithuong.png';
+import img_moqua from './images/img-moqua.png';
+
 // import muiten from './images/muiten.png';
 import ReactResizeDetector from 'react-resize-detector'
 import spin from './images/spin.gif';
@@ -133,7 +136,8 @@ class Lucky_Rotation extends React.Component {
 			isLive:false,
 			user:{},
 			xacthuc:false,
-			timeWaiting:0
+			timeWaiting:0,
+			dataItem:{}
 		};
 	}
 	componentWillMount(){
@@ -645,6 +649,28 @@ class Lucky_Rotation extends React.Component {
 		});
 	}
 
+	getItem=(user, item)=>{
+		this.props.getItemAward(user.Token, item.AwardId).then(()=>{
+			var data=this.props.dataItemAward;
+			if(data!==undefined){
+				if(data.Status===0){
+					var data_item=JSON.parse(data.Data.Message)
+					// this.setState({listHistory:data.Data, countHistory:data.Totals})
+					this.setState({dataItem:data_item.Data})
+					$("#MoQua").modal('show');
+					console.log(data_item)
+				}else{
+					$('#myModal11').modal('show');
+					this.setState({message_error:'Chưa tải được dữ liệu. Vui lòng thử lại'})
+				}
+			}else{
+				$('#myModal12').modal('show');
+				this.setState({server_err:true})
+			}
+		});
+		// console.log('AAAAAA')
+	}
+
 	hideModalTuDo=()=>{
 		$('#myModal2').modal('hide');
 	}
@@ -756,12 +782,16 @@ class Lucky_Rotation extends React.Component {
 		// var item = items[Math.floor(Math.random()*items.length)];
 	}
 
+	numberWithCommas=(x)=> {
+		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
 	render() {
-		const {xacthuc, scoinCard,height, width, dialogLoginOpen, dialogBonus, auto, dialogWarning, textWarning, isLogin, userTurnSpin, day, hour, minute, second, code,numberPage, img_status, message_status, data_auto,message_error,linkLiveStream,
+		const {xacthuc, scoinCard,height, width, dialogLoginOpen, dialogBonus, auto, dialogWarning, textWarning, isLogin, userTurnSpin, day, hour, minute, second, code,numberPage, img_status, message_status, data_auto,message_error,linkLiveStream,dataItem,
 			 activeTuDo, activeHistory, activeCodeBonus, activeVinhDanh, limit, countCodeBonus, countTuDo, countHistory, countVinhDanh, listHistory, listCodeBonus, listTuDo, listVinhDanh,itemBonus, turnsFree, noti_mdt, noti_tudo, hour_live, minute_live, second_live, isLive, user}=this.state;
 		const { classes } = this.props;
 		const notification_mdt=noti_mdt?(<span className="badge badge-pill badge-danger position-absolute noti-mdt">!</span>):(<span></span>);
 		const notification_tudo=noti_tudo?(<span className="badge badge-pill badge-danger position-absolute noti-tudo">!</span>):(<span></span>);
+		console.log(dataItem)
 		return (<div>
 			<a href="#logo" id="button"><img src={backtotop} alt="Back to Top" width="16" /></a>
 			<div className="container-fluid page1">
@@ -1073,6 +1103,7 @@ class Lucky_Rotation extends React.Component {
 											<th class="border-bottom-0 border-left-0 border-right-0 border-top-0">Phần thưởng</th>
 											<th class="border-bottom-0 border-left-0 border-right-0 border-top-0">Nội dung</th>
 											<th class="border-bottom-0 border-left-0 border-right-0 border-top-0">Thời gian trúng</th>
+											<th class="border-bottom-0 border-left-0 border-right-0 border-top-0">Mở quà</th>
 										</tr>
 										</thead>            
 										<tbody class="popup-tudo">
@@ -1081,6 +1112,7 @@ class Lucky_Rotation extends React.Component {
 													<td className="border-right-0">{obj.AwardName}</td>
 													<td className="border-left-0 border-right-0">{obj.AwardSpecific}</td>
 													<td className="border-left-0">{this.timeConverter(obj.SpinTime)}</td>
+													<td class="border-left-0"><a style={{cursor:'pointer'}} onClick={()=>this.getItem(user, obj)}>Mở</a></td>
 												</tr>
 											))}
 										</tbody>
@@ -1138,6 +1170,30 @@ class Lucky_Rotation extends React.Component {
 							
 						</div>
 						
+					</div>
+
+					</div>
+				</div>
+			</div>
+
+			{/* <!-- The Modal Mở Quà--> */}
+			<div class="modal fade" id="MoQua" style={{zIndex:10015}}>
+				<div class="modal-dialog modal-sm">
+					<div class="modal-content popup-phanthuong">
+
+					<div class="modal-header border-bottom-0">
+						<h4 class="modal-title w-100 text-center"><img src={img_moqua} alt="" /></h4>
+						<button type="button" class="close" data-dismiss="modal"><img src={btn_close} alt="Đóng" /></button>
+					</div>
+					<div class="modal-body">
+						<div class="table-responsive mt-2">              
+							<ul class="list-group">
+								<li class="list-group-item">Mệnh giá: {dataItem.Amount ? this.numberWithCommas(dataItem.Amount) : 0}k</li>
+								<li class="list-group-item">Mã code: {dataItem.Code}</li>
+								<li class="list-group-item">Serial: {dataItem.Serial}</li>
+								<li class="list-group-item">Hết hạn: {dataItem.Expires}</li>
+							</ul> 
+						</div>       
 					</div>
 
 					</div>
@@ -1594,6 +1650,7 @@ const mapStateToProps = state => ({
 	dataLuckyItems:state.lucky.dataLuckyItems,
 	dataInfoUser:state.lucky.dataInfoUser,
 	dataUserSpin:state.lucky.dataUserSpin,
+	dataItemAward:state.lucky.dataItemAward,
 	dataRotation:state.lucky.dataRotation,
 	dataRotationWithUser:state.lucky.dataRotationWithUser,
 	dataPick: state.lucky.dataPick,
@@ -1614,6 +1671,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 	pickCard,
 	getInfoUser,
 	buyTurn,
+	getItemAward,
 	getHistoryTuDo,
 	getData,
 	getTuDo,
