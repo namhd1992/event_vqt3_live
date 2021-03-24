@@ -271,7 +271,8 @@ class Lucky_Rotation extends React.Component {
 
 	getVinhDanh=(pageNumber)=>{
 		const {limit}=this.state;
-		this.props.getVinhDanh(limit, (pageNumber-1)).then(()=>{
+		var offsetVinhDanh=(pageNumber-1)*limit;
+		this.props.getVinhDanh(limit, offsetVinhDanh).then(()=>{
 			var data=this.props.dataVinhDanh;
 			if(data!==undefined){
 				if(data.Status===0){
@@ -613,8 +614,8 @@ class Lucky_Rotation extends React.Component {
 
 	getDataTuDo=(user)=>{
 		const {luckySpin, limit, activeTuDo}=this.state;
-		// var offsetTuDo=(pageNumber-1)*limit;
-		this.props.getTuDo(user.Token, limit, (activeTuDo-1)).then(()=>{
+		var offsetTuDo=(activeTuDo-1)*limit;
+		this.props.getTuDo(user.Token, limit, offsetTuDo).then(()=>{
 			var data=this.props.dataTuDo;
 			if(data!==undefined){
 				if(data.Status===0){
@@ -632,8 +633,8 @@ class Lucky_Rotation extends React.Component {
 
 	getHistory=(user)=>{
 		const {luckySpin, limit, activeHistory}=this.state;
-		// var offsetTuDo=(pageNumber-1)*limit;
-		this.props.getHistoryTuDo(user.Token, limit, (activeHistory-1)).then(()=>{
+		var offsetHistory=(activeHistory-1)*limit;
+		this.props.getHistoryTuDo(user.Token, limit, offsetHistory).then(()=>{
 			var data=this.props.dataHistoryTuDo;
 			if(data!==undefined){
 				if(data.Status===0){
