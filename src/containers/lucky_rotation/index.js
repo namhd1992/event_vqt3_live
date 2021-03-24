@@ -791,7 +791,6 @@ class Lucky_Rotation extends React.Component {
 		const { classes } = this.props;
 		const notification_mdt=noti_mdt?(<span className="badge badge-pill badge-danger position-absolute noti-mdt">!</span>):(<span></span>);
 		const notification_tudo=noti_tudo?(<span className="badge badge-pill badge-danger position-absolute noti-tudo">!</span>):(<span></span>);
-		console.log(dataItem)
 		return (<div>
 			<a href="#logo" id="button"><img src={backtotop} alt="Back to Top" width="16" /></a>
 			<div className="container-fluid page1">
@@ -1187,12 +1186,13 @@ class Lucky_Rotation extends React.Component {
 					</div>
 					<div class="modal-body">
 						<div class="table-responsive mt-2">              
-							<ul class="list-group">
+							{/* <ul class="list-group">
 								<li class="list-group-item">Mệnh giá: {dataItem.Amount ? this.numberWithCommas(dataItem.Amount) : 0}k</li>
 								<li class="list-group-item">Mã code: {dataItem.Code}</li>
 								<li class="list-group-item">Serial: {dataItem.Serial}</li>
 								<li class="list-group-item">Hết hạn: {dataItem.Expires}</li>
-							</ul> 
+							</ul>  */}
+							<p style={{textAlign:'center', fontSize:20, color:'green'}}>{dataItem.Message}</p>
 						</div>       
 					</div>
 

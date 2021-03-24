@@ -207,6 +207,7 @@ export const getVinhDanh = (limit, offset) => {
 }
 
 export const getInfoUser = (token) => {
+	
 	var header = {
 		headers: {
 			"Content-Type": "application/json",
@@ -219,6 +220,7 @@ export const getInfoUser = (token) => {
 		})
 		var url = Ultilities.base_url() + "luckywheel/user-signin";
 		return axios.get(url, header).then(function (response) {
+			console.log("response.data:",response.data)
 			dispatch({
 				type: INFO_USER_RESPONSE,
 				data: response.data

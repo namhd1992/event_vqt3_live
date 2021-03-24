@@ -75,11 +75,11 @@ class MenuAppBar extends React.Component {
 			var duration = moment.duration(end.diff(now));
 			var millisecond = Math.floor(duration.asMilliseconds()) + 86400000;
 			if (millisecond > 0) {
-				_this.props.getInfoUser(user.access_token).then(function () {
+				_this.props.getInfoUser(user.Token).then(function () {
 					console.log(_this.props.dataInfoUser)
-					if (_this.props.dataInfoUser === null) {
-						_this.logoutAction();
-					}
+					// if (_this.props.dataInfoUser.Status === 1) {
+					// 	_this.logoutAction();
+					// }
 				});
 				this.setState({
 					auth: true,
@@ -162,6 +162,7 @@ class MenuAppBar extends React.Component {
 
 const mapStateToProps = state => ({
 	data: state.profile.data,
+	dataInfoUser:state.lucky.dataInfoUser,
 	waiting: state.profile.waiting,
 	title: state.global.title,
 })
