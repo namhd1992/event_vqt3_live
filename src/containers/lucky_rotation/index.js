@@ -137,7 +137,9 @@ class Lucky_Rotation extends React.Component {
 			user:{},
 			xacthuc:false,
 			timeWaiting:0,
-			dataItem:{}
+			dataItem:{},
+			startSpin:false,
+			len_auto:0
 		};
 	}
 	componentWillMount(){
@@ -388,13 +390,14 @@ class Lucky_Rotation extends React.Component {
 									var id=data.Data.AwardId;
 									var pos=0
 									pos = itemOfSpin.map(function(e) { return e.Id; }).indexOf(id);
-									list.push(data.Data.AwardName);
+									list.unshift(data.Data.AwardName);
+									var len_auto=list.length;
 									
 									this.resetWheel();
 									if(!isSpin && closeAuto){
 										this.startSpin(pos+1);
 									}	
-									this.setState({itemBonus: data.Data, data_auto: list, closeAuto:true});
+									this.setState({itemBonus: data.Data, data_auto: list, len_auto:len_auto, closeAuto:true});
 								}else if(data.Status ===2){
 									$('#matluot').modal('show');
 									this.setState({message_error:data.Message, timeWaiting:data.WaitingSeconds})
@@ -425,7 +428,7 @@ class Lucky_Rotation extends React.Component {
 	btnStart=()=>{
 		const {wheelSpinning}=this.state;
 		if(!wheelSpinning){
-			this.setState({data_auto:[], closeAuto:true},()=>{
+			this.setState({data_auto:[], closeAuto:true, startSpin:true},()=>{
 				this.start();
 			})
 		}	
@@ -470,7 +473,7 @@ class Lucky_Rotation extends React.Component {
 		if(auto){
 			var intervalId = setInterval(this.autoRotation, 2000);
 			$('#myModal9').modal('show');
-   			this.setState({intervalId: intervalId, isSpin: true, closeAuto:false, wheelSpinning: false});
+   			this.setState({intervalId: intervalId, isSpin: true, closeAuto:false, wheelSpinning: false, startSpin:false});
 			
 		}else{
 			if(itemBonus.AwardId===12){
@@ -482,7 +485,7 @@ class Lucky_Rotation extends React.Component {
 			}else{
 				$('#myModal4').modal('show');
 			}
-			this.setState({isSpin: false, closeAuto:true, wheelSpinning: false});
+			this.setState({isSpin: false, closeAuto:true, wheelSpinning: false, startSpin:false});
 			this.getDetailData()
 		}
 	}
@@ -787,7 +790,7 @@ class Lucky_Rotation extends React.Component {
 		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	}
 	render() {
-		const {xacthuc, scoinCard,height, width, dialogLoginOpen, dialogBonus, auto, dialogWarning, textWarning, isLogin, userTurnSpin, day, hour, minute, second, code,numberPage, img_status, message_status, data_auto,message_error,linkLiveStream,dataItem,
+		const {xacthuc, scoinCard,height, width, dialogLoginOpen, dialogBonus, auto, dialogWarning, textWarning, isLogin, userTurnSpin, day, hour, minute, second,len_auto, code,numberPage, img_status, message_status, data_auto,message_error,linkLiveStream,dataItem,startSpin,
 			 activeTuDo, activeHistory, activeCodeBonus, activeVinhDanh, limit, countCodeBonus, countTuDo, countHistory, countVinhDanh, listHistory, listCodeBonus, listTuDo, listVinhDanh,itemBonus, turnsFree, noti_mdt, noti_tudo, hour_live, minute_live, second_live, isLive, user}=this.state;
 		const { classes } = this.props;
 		const notification_mdt=noti_mdt?(<span className="badge badge-pill badge-danger position-absolute noti-mdt">!</span>):(<span></span>);
@@ -851,7 +854,10 @@ class Lucky_Rotation extends React.Component {
 					</div>
 					<div className="btn-quay">
 						<h5 className="text-center">Còn: {turnsFree} lượt &nbsp;</h5>
-						<a style={{cursor:'pointer'}} onClick={this.btnStart}><img src={btn_quay_p2} alt="" className="img-fluid hv" /></a>
+						{(startSpin)?(<a style={{cursor:'pointer'}}><img src={btn_quay_p2} alt="" className="img-fluid hv" /></a>):(
+							<a style={{cursor:'pointer'}} onClick={this.btnStart}><img src={btn_quay_p2} alt="" className="img-fluid hv" /></a>
+						)}
+						
 						<div className="custom-control custom-checkbox">
 							<input type="checkbox" className="custom-control-input" id="customCheck" name="autospin" />
 							<label className="custom-control-label" for="customCheck" onClick={this.handleChange}>Chọn quay tự động</label>
@@ -1379,7 +1385,7 @@ class Lucky_Rotation extends React.Component {
 							<h3 className="text-purple text-center">Kết quả quay tự động</h3>
 							<ol className="list-group list-group-flush">
 								{data_auto.map((obj, key) => (
-									<li className="list-group-item" key={key}>{key+1}. {obj}</li>
+									<li className="list-group-item" key={key}>{len_auto-key}. {obj}</li>
 								))}
 							</ol> 
 							
