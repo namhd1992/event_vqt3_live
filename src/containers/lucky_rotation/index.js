@@ -69,6 +69,8 @@ const styles = {
 	},
 };
 
+var award_open=true;
+
 class Lucky_Rotation extends React.Component {
 
 	constructor(props){
@@ -654,24 +656,27 @@ class Lucky_Rotation extends React.Component {
 	}
 
 	getItem=(user, item)=>{
-		this.props.getItemAward(user.Token, item.AwardId).then(()=>{
-			var data=this.props.dataItemAward;
-			if(data!==undefined){
-				if(data.Status===0){
-					var data_item=JSON.parse(data.Data.Message)
-					// this.setState({listHistory:data.Data, countHistory:data.Totals})
-					this.setState({dataItem:data_item.Data})
-					$("#MoQua").modal('show');
-					console.log(data_item)
+		if(award_open){
+			award_open=false;
+			this.props.getItemAward(user.Token, item.AwardId).then(()=>{
+				var data=this.props.dataItemAward;
+				award_open=true;
+				if(data!==undefined){
+					if(data.Status===0){
+						var data_item=JSON.parse(data.Data.Message)
+						// this.setState({listHistory:data.Data, countHistory:data.Totals})
+						this.setState({dataItem:data_item.Data})
+						$("#MoQua").modal('show');
+					}else{
+						$('#myModal11').modal('show');
+						this.setState({message_error:'Chưa tải được dữ liệu. Vui lòng thử lại'})
+					}
 				}else{
-					$('#myModal11').modal('show');
-					this.setState({message_error:'Chưa tải được dữ liệu. Vui lòng thử lại'})
+					$('#myModal12').modal('show');
+					this.setState({server_err:true})
 				}
-			}else{
-				$('#myModal12').modal('show');
-				this.setState({server_err:true})
-			}
-		});
+			});
+		}
 		// console.log('AAAAAA')
 	}
 
@@ -1117,8 +1122,8 @@ class Lucky_Rotation extends React.Component {
 												<tr key={key}>
 													<td className="border-right-0">{obj.AwardName}</td>
 													<td className="border-left-0 border-right-0">{obj.AwardSpecific}</td>
-													<td className="border-left-0">{this.timeConverter(obj.SpinTime)}</td>
-													<td class="border-left-0"><a style={{cursor:'pointer'}} onClick={()=>this.getItem(user, obj)}>Mở</a></td>
+													<td className="border-left-0 border-right-0">{this.timeConverter(obj.SpinTime)}</td>
+													<td class="border-left-0"><a class="text-primary"  style={{cursor:'pointer'}} onClick={()=>this.getItem(user, obj)}>Mở</a></td>
 												</tr>
 											))}
 										</tbody>
@@ -1193,13 +1198,21 @@ class Lucky_Rotation extends React.Component {
 					</div>
 					<div class="modal-body">
 						<div class="table-responsive mt-2">              
-							{/* <ul class="list-group">
+							{(dataItem.Type==='TopupScoin')?(<p style={{textAlign:'center', fontSize:20, color:'green'}}>{dataItem.Message}</p>):(<div></div>)}
+							{(dataItem.Type==='ScoinCard')?(<ul class="list-group">
 								<li class="list-group-item">Mệnh giá: {dataItem.Amount ? this.numberWithCommas(dataItem.Amount) : 0}k</li>
 								<li class="list-group-item">Mã code: {dataItem.Code}</li>
 								<li class="list-group-item">Serial: {dataItem.Serial}</li>
 								<li class="list-group-item">Hết hạn: {dataItem.Expires}</li>
-							</ul>  */}
-							<p style={{textAlign:'center', fontSize:20, color:'green'}}>{dataItem.Message}</p>
+							</ul> ):(<div></div>)}
+							{(dataItem.Type==='ScoinVoucher')?(<ul class="list-group">
+								<li class="list-group-item">Mệnh giá: {dataItem.Amount ? this.numberWithCommas(dataItem.Amount) : 0}k</li>
+								<li class="list-group-item">Mã code: {dataItem.Code}</li>
+								<li class="list-group-item">Serial: {dataItem.Serial}</li>
+								<li class="list-group-item">Ngày bắt đầu: {dataItem.StartDate}</li>
+								<li class="list-group-item">Ngày kết thúc: {dataItem.EndDate}</li>
+							</ul>):(<div></div>)}
+							
 						</div>       
 					</div>
 
