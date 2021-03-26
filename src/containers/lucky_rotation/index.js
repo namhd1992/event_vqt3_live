@@ -56,6 +56,7 @@ import img_thongbao from './images/img-thongbao.png';
 import img_livestream from './images/img-livestream.png';
 import img_giaithuong from './images/img-giaithuong.png';
 import img_moqua from './images/img-moqua.png';
+import loading from './images/loading.gif';
 
 // import muiten from './images/muiten.png';
 import ReactResizeDetector from 'react-resize-detector'
@@ -1649,17 +1650,11 @@ class Lucky_Rotation extends React.Component {
 				{/* <!-- The Modal Loading--> */}
 				{(waiting)?(<div class="modal fade show" style={{zIndex: 10001, display: "block", paddingRight: 4}} aria-modal="true" role="dialog">
 					<div class="modal-dialog d-flex justify-content-center align-items-center h-75">
-						<button class="btn btn-danger">
-						<span class="spinner-border spinner-border-sm"></span>
-						Loading..
-						</button>
+						<img src={loading} width="32" />
 					</div>
 				</div>):(<div class="modal fade" id="Loading" style={{zIndex: 10001, display: "none"}} aria-hidden="true">
 					<div class="modal-dialog d-flex justify-content-center align-items-center h-75">
-						<button class="btn btn-danger">
-						<span class="spinner-border spinner-border-sm"></span>
-						Loading..
-						</button>
+						<img src={loading} width="32" />
 					</div>
 				</div>)}
 				
