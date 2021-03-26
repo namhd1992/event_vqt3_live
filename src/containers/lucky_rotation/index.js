@@ -383,7 +383,9 @@ class Lucky_Rotation extends React.Component {
 			if (user !== null) {
 				if(user.VipLevel!==0){
 					if(turnsFree>0){
+						$('#Loading').modal('show');
 						this.props.pickCard(user.Token).then(()=>{
+							$('#Loading').modal('hide');
 							var data=this.props.dataPick;
 							console.log(data)
 							var list=this.state.data_auto;
@@ -611,7 +613,6 @@ class Lucky_Rotation extends React.Component {
 		if (user !== null) {
 			this.getDataTuDo(user);
 			$('#myModal4').modal('hide');
-			$('#myModal2').modal('show');
 		}else {
 			$('#myModal5').modal('show');
 		}
@@ -620,10 +621,13 @@ class Lucky_Rotation extends React.Component {
 	getDataTuDo=(user)=>{
 		const {luckySpin, limit, activeTuDo}=this.state;
 		var offsetTuDo=(activeTuDo-1)*limit;
+		$('#Loading').modal('show');
 		this.props.getTuDo(user.Token, limit, offsetTuDo).then(()=>{
 			var data=this.props.dataTuDo;
 			if(data!==undefined){
 				if(data.Status===0){
+					$('#Loading').modal('hide');
+					$('#myModal2').modal('show');
 					this.setState({listTuDo:data.Data, countTuDo:data.Totals, noti_tudo:false})
 				}else{
 					$('#myModal11').modal('show');
@@ -639,7 +643,9 @@ class Lucky_Rotation extends React.Component {
 	getHistory=(user)=>{
 		const {luckySpin, limit, activeHistory}=this.state;
 		var offsetHistory=(activeHistory-1)*limit;
+		$('#Loading').modal('show');
 		this.props.getHistoryTuDo(user.Token, limit, offsetHistory).then(()=>{
+			$('#Loading').modal('hide');
 			var data=this.props.dataHistoryTuDo;
 			if(data!==undefined){
 				if(data.Status===0){
@@ -796,7 +802,7 @@ class Lucky_Rotation extends React.Component {
 	}
 	render() {
 		const {xacthuc, scoinCard,height, width, dialogLoginOpen, dialogBonus, auto, dialogWarning, textWarning, isLogin, userTurnSpin, day, hour, minute, second,len_auto, code,numberPage, img_status, message_status, data_auto,message_error,linkLiveStream,dataItem,startSpin,
-			 activeTuDo, activeHistory, activeCodeBonus, activeVinhDanh, limit, countCodeBonus, countTuDo, countHistory, countVinhDanh, listHistory, listCodeBonus, listTuDo, listVinhDanh,itemBonus, turnsFree, noti_mdt, noti_tudo, hour_live, minute_live, second_live, isLive, user}=this.state;
+			waiting, activeTuDo, activeHistory, activeCodeBonus, activeVinhDanh, limit, countCodeBonus, countTuDo, countHistory, countVinhDanh, listHistory, listCodeBonus, listTuDo, listVinhDanh,itemBonus, turnsFree, noti_mdt, noti_tudo, hour_live, minute_live, second_live, isLive, user}=this.state;
 		const { classes } = this.props;
 		const notification_mdt=noti_mdt?(<span className="badge badge-pill badge-danger position-absolute noti-mdt">!</span>):(<span></span>);
 		const notification_tudo=noti_tudo?(<span className="badge badge-pill badge-danger position-absolute noti-tudo">!</span>):(<span></span>);
@@ -1199,19 +1205,24 @@ class Lucky_Rotation extends React.Component {
 					<div class="modal-body">
 						<div class="table-responsive mt-2">              
 							{(dataItem.Type==='TopupScoin')?(<p style={{textAlign:'center', fontSize:20, color:'green'}}>{dataItem.Message}</p>):(<div></div>)}
-							{(dataItem.Type==='ScoinCard')?(<ul class="list-group">
-								<li class="list-group-item">Mệnh giá: {dataItem.Amount ? this.numberWithCommas(dataItem.Amount) : 0}k</li>
-								<li class="list-group-item">Mã code: {dataItem.Code}</li>
-								<li class="list-group-item">Serial: {dataItem.Serial}</li>
-								<li class="list-group-item">Hết hạn: {dataItem.Expires}</li>
-							</ul> ):(<div></div>)}
-							{(dataItem.Type==='ScoinVoucher')?(<ul class="list-group">
-								<li class="list-group-item">Mệnh giá: {dataItem.Amount ? this.numberWithCommas(dataItem.Amount) : 0}k</li>
-								<li class="list-group-item">Mã code: {dataItem.Code}</li>
-								<li class="list-group-item">Serial: {dataItem.Serial}</li>
-								<li class="list-group-item">Ngày bắt đầu: {dataItem.StartDate}</li>
-								<li class="list-group-item">Ngày kết thúc: {dataItem.EndDate}</li>
-							</ul>):(<div></div>)}
+							{(dataItem.Type==='ScoinCard')?(<div class="card bg-light mx-auto" style={{width:300}}>
+								<div class="card-body text-center">
+								<p class="card-text text-primary mb-3 h4">Thẻ Scoin mệnh giá: <br /> {dataItem.Amount ? this.numberWithCommas(dataItem.Amount) : 0} vnđ</p>
+								<p class="card-text border-bottom text-dark mb-3 h5">Mã code: {dataItem.Code}</p>
+								<p class="card-text border-bottom text-dark mb-3 h5">Serial: {dataItem.Serial}</p>
+								<p class="card-text text-secondary">Hết hạn: {dataItem.Expires}</p>
+								<p class="card-text"></p>
+								</div>
+							</div>):(<div></div>)}
+							{(dataItem.Type==='ScoinVoucher')?(<div class="card bg-light mx-auto" style={{width:300}}>
+								<div class="card-body text-center">
+								<p class="card-text text-primary mb-3 h4">Thẻ Scoin mệnh giá: <br /> {dataItem.Amount ? this.numberWithCommas(dataItem.Amount) : 0} vnđ</p>
+								<p class="card-text border-bottom text-dark mb-3 h5">Mã code: {dataItem.Code}</p>
+								<p class="card-text border-bottom text-dark mb-3 h5">Serial: {dataItem.Serial}</p>
+								<p class="card-text text-secondary">Ngày bắt đầu: {dataItem.StartDate} <br />Ngày kết thúc: {dataItem.EndDate}</p>
+								<p class="card-text"></p>
+								</div>
+							</div>):(<div></div>)}
 							
 						</div>       
 					</div>
@@ -1655,6 +1666,16 @@ class Lucky_Rotation extends React.Component {
 							</div>
 
 						</div>
+					</div>
+				</div>
+
+				{/* <!-- The Modal Loading--> */}
+				<div class="modal fade" id="Loading" style={{zIndex:10020}}>
+					<div class="modal-dialog d-flex justify-content-center align-items-center h-75">
+						<button class="btn btn-danger">
+						<span class="spinner-border spinner-border-sm"></span>
+						Loading..
+						</button>
 					</div>
 				</div>
 				<ReactResizeDetector handleWidth={true} handleHeight={true} onResize={this.onResize} />
