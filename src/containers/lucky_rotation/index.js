@@ -623,10 +623,10 @@ class Lucky_Rotation extends React.Component {
 		var offsetTuDo=(activeTuDo-1)*limit;
 		$('#Loading').modal('show');
 		this.props.getTuDo(user.Token, limit, offsetTuDo).then(()=>{
+			$('#Loading').modal('hide');
 			var data=this.props.dataTuDo;
 			if(data!==undefined){
 				if(data.Status===0){
-					$('#Loading').modal('hide');
 					$('#myModal2').modal('show');
 					this.setState({listTuDo:data.Data, countTuDo:data.Totals, noti_tudo:false})
 				}else{
@@ -664,7 +664,9 @@ class Lucky_Rotation extends React.Component {
 	getItem=(user, item)=>{
 		if(award_open){
 			award_open=false;
+			$('#Loading').modal('show');
 			this.props.getItemAward(user.Token, item.AwardId).then(()=>{
+				$('#Loading').modal('hide');
 				var data=this.props.dataItemAward;
 				award_open=true;
 				if(data!==undefined){
@@ -1220,6 +1222,15 @@ class Lucky_Rotation extends React.Component {
 								<p class="card-text border-bottom text-dark mb-3 h5">Mã code: {dataItem.Code}</p>
 								<p class="card-text border-bottom text-dark mb-3 h5">Serial: {dataItem.Serial}</p>
 								<p class="card-text text-secondary">Ngày bắt đầu: {dataItem.StartDate} <br />Ngày kết thúc: {dataItem.EndDate}</p>
+								<p class="card-text"></p>
+								</div>
+							</div>):(<div></div>)}
+							{(dataItem.Type==='Giftcode')?(<div class="card bg-light mx-auto" style={{width:300}}>
+								<div class="card-body text-center">
+								<p class="card-text text-primary mb-3 h4">Mã code: {dataItem.Code}</p>
+								<p class="card-text border-bottom text-dark mb-3 h5">Tên game: {dataItem.GameName}</p>
+								<p class="card-text border-bottom text-dark mb-3 h5">Mô tả: {dataItem.Description}</p>
+								<p class="card-text text-secondary">Hết hạn: {dataItem.ExpiredDate}</p>
 								<p class="card-text"></p>
 								</div>
 							</div>):(<div></div>)}
