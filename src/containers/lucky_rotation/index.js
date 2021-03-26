@@ -142,7 +142,8 @@ class Lucky_Rotation extends React.Component {
 			timeWaiting:0,
 			dataItem:{},
 			startSpin:false,
-			len_auto:0
+			len_auto:0,
+			waiting:false,
 		};
 	}
 	componentWillMount(){
@@ -249,6 +250,14 @@ class Lucky_Rotation extends React.Component {
 		window.addEventListener('scroll', this.handleScroll);
 	}
 
+	componentWillReceiveProps(nextProps){
+		if(this.props.waiting !== nextProps.waiting){
+			this.setState({waiting:nextProps.waiting})
+			setTimeout(()=>{ 
+				this.setState({waiting:false})
+			}, 3000);
+		}
+	}
 	componentWillUnmount() {
 		clearInterval(this.state.intervalId);
 		this.setState({ auto : !this.state.auto});
@@ -802,8 +811,8 @@ class Lucky_Rotation extends React.Component {
 	}
 	render() {
 		const {xacthuc, scoinCard,height, width, dialogLoginOpen, dialogBonus, auto, dialogWarning, textWarning, isLogin, userTurnSpin, day, hour, minute, second,len_auto, code,numberPage, img_status, message_status, data_auto,message_error,linkLiveStream,dataItem,startSpin,
-			 activeTuDo, activeHistory, activeCodeBonus, activeVinhDanh, limit, countCodeBonus, countTuDo, countHistory, countVinhDanh, listHistory, listCodeBonus, listTuDo, listVinhDanh,itemBonus, turnsFree, noti_mdt, noti_tudo, hour_live, minute_live, second_live, isLive, user}=this.state;
-		const { classes, waiting } = this.props;
+			waiting, activeTuDo, activeHistory, activeCodeBonus, activeVinhDanh, limit, countCodeBonus, countTuDo, countHistory, countVinhDanh, listHistory, listCodeBonus, listTuDo, listVinhDanh,itemBonus, turnsFree, noti_mdt, noti_tudo, hour_live, minute_live, second_live, isLive, user}=this.state;
+		const { classes } = this.props;
 		const notification_mdt=noti_mdt?(<span className="badge badge-pill badge-danger position-absolute noti-mdt">!</span>):(<span></span>);
 		const notification_tudo=noti_tudo?(<span className="badge badge-pill badge-danger position-absolute noti-tudo">!</span>):(<span></span>);
 		return (<div>
@@ -1533,7 +1542,7 @@ class Lucky_Rotation extends React.Component {
 					</div>
 				</div>
 
-				<div className="modal fade" id="myModal12">
+				<div className="modal fade" id="myModal12" style={{zIndex: 10010}}>
 					<div className="modal-dialog">
 						<div className="modal-content popup-phanthuong">
 
@@ -1547,7 +1556,7 @@ class Lucky_Rotation extends React.Component {
 						<div className="modal-body">
 							<div className="table-responsive mt-2">              
 								<h5 className="text-thele lead text-center">Thông báo bảo trì!</h5>
-								<h5 className="text-thele lead text-center">Hệ thống đang được nâng cấp để tối ưu. Vui lòng quay lại sau 10 phút.</h5>
+								<h5 className="text-thele lead text-center">Chức năng này đang được nâng cấp để tối ưu. Vui lòng quay lại sau 10 phút.</h5>
 								<h5 className="text-thele lead text-center">Xin lỗi vì sự bất tiện này</h5>
 								<button type="button" className="btn btn-xacnhan text-white btn-block text-center py-4" onClick={this.closeServerErr}>Xác nhận</button>
 							</div>       
@@ -1648,11 +1657,11 @@ class Lucky_Rotation extends React.Component {
 			
 
 				{/* <!-- The Modal Loading--> */}
-				{(waiting)?(<div class="modal fade show modal-backdrop" style={{zIndex: 10001, display: "block", paddingRight: 4}} aria-modal="true" role="dialog">
+				{(waiting)?(<div class="modal fade show modal-backdrop" style={{zIndex: 10015, display: "block", paddingRight: 4}} aria-modal="true" role="dialog">
 					<div class="modal-dialog d-flex justify-content-center align-items-center h-75">
 						<img src={loading} width="32" />
 					</div>
-				</div>):(<div class="modal fade" id="Loading" style={{zIndex: 10001, display: "none"}} aria-hidden="true">
+				</div>):(<div class="modal fade" id="Loading" style={{zIndex: 10015, display: "none"}} aria-hidden="true">
 					<div class="modal-dialog d-flex justify-content-center align-items-center h-75">
 						<img src={loading} width="32" />
 					</div>
