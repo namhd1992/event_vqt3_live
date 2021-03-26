@@ -383,9 +383,9 @@ class Lucky_Rotation extends React.Component {
 			if (user !== null) {
 				if(user.VipLevel!==0){
 					if(turnsFree>0){
-						$('#Loading').modal('show');
+						// $('#Loading').modal('show');
 						this.props.pickCard(user.Token).then(()=>{
-							$('#Loading').modal('hide');
+							// $('#Loading').modal('hide');
 							var data=this.props.dataPick;
 							console.log(data)
 							var list=this.state.data_auto;
@@ -621,9 +621,9 @@ class Lucky_Rotation extends React.Component {
 	getDataTuDo=(user)=>{
 		const {luckySpin, limit, activeTuDo}=this.state;
 		var offsetTuDo=(activeTuDo-1)*limit;
-		$('#Loading').modal('show');
+		// $('#Loading').modal('show');
 		this.props.getTuDo(user.Token, limit, offsetTuDo).then(()=>{
-			$('#Loading').modal('hide');
+			// $('#Loading').modal('hide');
 			var data=this.props.dataTuDo;
 			if(data!==undefined){
 				if(data.Status===0){
@@ -637,15 +637,16 @@ class Lucky_Rotation extends React.Component {
 				$('#myModal12').modal('show');
 				this.setState({server_err:true})
 			}
+			
 		});
 	}
 
 	getHistory=(user)=>{
 		const {luckySpin, limit, activeHistory}=this.state;
 		var offsetHistory=(activeHistory-1)*limit;
-		$('#Loading').modal('show');
+		// $('#Loading').modal('show');
 		this.props.getHistoryTuDo(user.Token, limit, offsetHistory).then(()=>{
-			$('#Loading').modal('hide');
+			// $('#Loading').modal('hide');
 			var data=this.props.dataHistoryTuDo;
 			if(data!==undefined){
 				if(data.Status===0){
@@ -662,30 +663,25 @@ class Lucky_Rotation extends React.Component {
 	}
 
 	getItem=(user, item)=>{
-		if(award_open){
-			award_open=false;
-			$('#Loading').modal('show');
-			this.props.getItemAward(user.Token, item.AwardId).then(()=>{
-				$('#Loading').modal('hide');
-				var data=this.props.dataItemAward;
-				award_open=true;
-				if(data!==undefined){
-					if(data.Status===0){
-						var data_item=JSON.parse(data.Data.Message)
-						// this.setState({listHistory:data.Data, countHistory:data.Totals})
-						this.setState({dataItem:data_item.Data})
-						$("#MoQua").modal('show');
-					}else{
-						$('#myModal11').modal('show');
-						this.setState({message_error:'Chưa tải được dữ liệu. Vui lòng thử lại'})
-					}
+		this.props.getItemAward(user.Token, item.AwardId).then(()=>{
+			// $('#Loading').modal('hide');
+			var data=this.props.dataItemAward;
+			award_open=true;
+			if(data!==undefined){
+				if(data.Status===0){
+					var data_item=JSON.parse(data.Data.Message)
+					// this.setState({listHistory:data.Data, countHistory:data.Totals})
+					this.setState({dataItem:data_item.Data})
+					$("#MoQua").modal('show');
 				}else{
-					$('#myModal12').modal('show');
-					this.setState({server_err:true})
+					$('#myModal11').modal('show');
+					this.setState({message_error:'Chưa tải được dữ liệu. Vui lòng thử lại'})
 				}
-			});
-		}
-		// console.log('AAAAAA')
+			}else{
+				$('#myModal12').modal('show');
+				this.setState({server_err:true})
+			}
+		});
 	}
 
 	hideModalTuDo=()=>{
