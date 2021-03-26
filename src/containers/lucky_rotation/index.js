@@ -145,6 +145,7 @@ class Lucky_Rotation extends React.Component {
 		};
 	}
 	componentWillMount(){
+		console.log(this.props.waiting)
 		// if (window.innerWidth <= 320) {
 		// 	this.setState({ width: 242, height: 378, img_width:280, img_height:280});
 		// }
@@ -800,8 +801,8 @@ class Lucky_Rotation extends React.Component {
 	}
 	render() {
 		const {xacthuc, scoinCard,height, width, dialogLoginOpen, dialogBonus, auto, dialogWarning, textWarning, isLogin, userTurnSpin, day, hour, minute, second,len_auto, code,numberPage, img_status, message_status, data_auto,message_error,linkLiveStream,dataItem,startSpin,
-			waiting, activeTuDo, activeHistory, activeCodeBonus, activeVinhDanh, limit, countCodeBonus, countTuDo, countHistory, countVinhDanh, listHistory, listCodeBonus, listTuDo, listVinhDanh,itemBonus, turnsFree, noti_mdt, noti_tudo, hour_live, minute_live, second_live, isLive, user}=this.state;
-		const { classes } = this.props;
+			 activeTuDo, activeHistory, activeCodeBonus, activeVinhDanh, limit, countCodeBonus, countTuDo, countHistory, countVinhDanh, listHistory, listCodeBonus, listTuDo, listVinhDanh,itemBonus, turnsFree, noti_mdt, noti_tudo, hour_live, minute_live, second_live, isLive, user}=this.state;
+		const { classes, waiting } = this.props;
 		const notification_mdt=noti_mdt?(<span className="badge badge-pill badge-danger position-absolute noti-mdt">!</span>):(<span></span>);
 		const notification_tudo=noti_tudo?(<span className="badge badge-pill badge-danger position-absolute noti-tudo">!</span>):(<span></span>);
 		return (<div>
@@ -883,38 +884,6 @@ class Lucky_Rotation extends React.Component {
 			{/* End p2 */}
 
 			<div className="container jumbotron">
-				{/* <div class="bg-ketquaquayso">
-					<h2 class="d-block text-center text-white text-kqqs display-6 mb-0" style={{fontSize:'2vw'}}>KQ Mã dự thưởng</h2>
-					<h4 class="text-center text-white" style={{fontSize:'1.5vw'}}>Tự động cập nhật sau 19:00 ngày 01/11/2019</h4>
-					<div class="row px-5">
-						<div class="col-6 align-content-center text-center pl-3">
-							<h2 class="text-center pt-4 color-kqqs" style={{fontSize:'2vw'}}>GIẢI ĐẶC BIỆT <br />iPhone 11 Pro Max</h2>
-							<img src={iphone_11_pro_max} width="60%" class="img-fluid text-center" />
-						</div>
-						<div class="col-6 mstt">
-							<h2 class="text-center color-kqqs" style={{fontSize:'2vw'}}>Mã số trúng thưởng<br /> 
-							<label class="form-control form-control form-control-sm bg-secondary" style={{height:50}} /></h2>
-							
-						</div>
-					</div>
-				</div> */}
-				{/* <div class="bg-ketquaquayso">
-					<h2 class="d-block text-center text-kqqs mb-0 bg-title-mdt">KQ Mã dự thưởng</h2>
-					<h4 class="text-center text-white">Tự động cập nhật sau livestream lúc 19:00 ngày 04/11/2019</h4>
-					<div class="row px-5">
-						<div class="col-md-6 align-content-center text-center pl-3">
-							<h2 class="text-center pt-4 color-kqqs title-giaidacbiet">GIẢI ĐẶC BIỆT <br />iPhone 11 Pro Max</h2>
-							<img src={iphone_11_pro_max} width="70%" class="img-fluid text-center bg-img-giaithuong" />
-						</div>
-						<div class="col-md-6 mstt">
-						<h2 class="text-center color-kqqs title-giaidacbiet">Mã số trúng thưởng<br /> <span class="badge badge-secondary p-3" style={{width: 120, height: 50, fontSize:24}}>2135</span><br />
-						
-						<button class="btn btn-dv" onClick={this.showPopupLiveStream}><h5 class="glow mb-0 small"><img src={spin} width="24" class="pr-1" alt=""/> Xem livestream </h5></button>
-						</h2>
-							
-						</div>
-					</div>
-				</div> */}
 				<h2 id="bvd" className="d-block btn-ketqua mt-5"><img src={icon_bangvinhdanh} alt="icon" />Bảng vinh danh</h2>
 				<div className="table-responsive mt-4">
 					<table className="table table-borderless tbl-bvd mx-auto text-center">
@@ -1675,16 +1644,25 @@ class Lucky_Rotation extends React.Component {
 						</div>
 					</div>
 				</div>
+			
 
 				{/* <!-- The Modal Loading--> */}
-				<div class="modal fade" id="Loading" style={{zIndex:10020}}>
+				{(waiting)?(<div class="modal fade show" style={{zIndex: 10001, display: "block", paddingRight: 4}} aria-modal="true" role="dialog">
 					<div class="modal-dialog d-flex justify-content-center align-items-center h-75">
 						<button class="btn btn-danger">
 						<span class="spinner-border spinner-border-sm"></span>
 						Loading..
 						</button>
 					</div>
-				</div>
+				</div>):(<div class="modal fade" id="Loading" style={{zIndex: 10001, display: "none"}} aria-hidden="true">
+					<div class="modal-dialog d-flex justify-content-center align-items-center h-75">
+						<button class="btn btn-danger">
+						<span class="spinner-border spinner-border-sm"></span>
+						Loading..
+						</button>
+					</div>
+				</div>)}
+				
 				<ReactResizeDetector handleWidth={true} handleHeight={true} onResize={this.onResize} />
 
 
