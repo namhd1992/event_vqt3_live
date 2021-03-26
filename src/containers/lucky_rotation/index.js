@@ -1648,7 +1648,7 @@ class Lucky_Rotation extends React.Component {
 			
 
 				{/* <!-- The Modal Loading--> */}
-				{(waiting)?(<div class="modal fade show" style={{zIndex: 10001, display: "block", paddingRight: 4}} aria-modal="true" role="dialog">
+				{(waiting)?(<div class="modal fade show modal-backdrop" style={{zIndex: 10001, display: "block", paddingRight: 4}} aria-modal="true" role="dialog">
 					<div class="modal-dialog d-flex justify-content-center align-items-center h-75">
 						<img src={loading} width="32" />
 					</div>
