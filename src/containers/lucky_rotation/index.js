@@ -1203,8 +1203,8 @@ class Lucky_Rotation extends React.Component {
 							{(dataItem.Type==='Giftcode')?(<div class="card bg-light mx-auto" style={{width:300}}>
 								<div class="card-body text-center">
 								<p class="card-text text-primary mb-3 h4">Mã code: {dataItem.Code}</p>
-								<p class="card-text border-bottom text-dark mb-3 h5">Tên game: {dataItem.GameName}</p>
-								<p class="card-text border-bottom text-dark mb-3 h5">Mô tả: {dataItem.Description}</p>
+								<p class="card-text border-bottom text-dark mb-3 h5">Tên game: {dataItem.Description}</p>
+								<p class="card-text border-bottom text-dark mb-3 h5">Mô tả: {dataItem.GameName}</p>
 								<p class="card-text text-secondary">Hết hạn: {dataItem.ExpiredDate}</p>
 								<p class="card-text"></p>
 								</div>
