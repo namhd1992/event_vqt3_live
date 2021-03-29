@@ -680,9 +680,8 @@ class Lucky_Rotation extends React.Component {
 			award_open=true;
 			if(data!==undefined){
 				if(data.Status===0){
-					var data_item=JSON.parse(data.Data.Message)
 					// this.setState({listHistory:data.Data, countHistory:data.Totals})
-					this.setState({dataItem:data_item.Data})
+					this.setState({dataItem:data.Data})
 					$("#MoQua").modal('show');
 				}else{
 					$('#myModal11').modal('show');
@@ -1182,6 +1181,7 @@ class Lucky_Rotation extends React.Component {
 					<div class="modal-body">
 						<div class="table-responsive mt-2">              
 							{(dataItem.Type==='TopupScoin')?(<p style={{textAlign:'center', fontSize:20, color:'green'}}>{dataItem.Message}</p>):(<div></div>)}
+							{(dataItem.Type==='AddSpin')?(<p style={{textAlign:'center', fontSize:20, color:'green'}}>{dataItem.Message}</p>):(<div></div>)}
 							{(dataItem.Type==='ScoinCard')?(<div class="card bg-light mx-auto" style={{width:300}}>
 								<div class="card-body text-center">
 								<p class="card-text text-primary mb-3 h4">Thẻ Scoin mệnh giá: <br /> {dataItem.Amount ? this.numberWithCommas(dataItem.Amount) : 0} vnđ</p>
