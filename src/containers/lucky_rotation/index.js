@@ -920,7 +920,7 @@ class Lucky_Rotation extends React.Component {
 						<tr>
 							<td></td>
 							<td>*******</td>
-							<td>iPhone 11 Pro Max 256GB</td>
+							<td>iPhone 12 Pro Max 256GB</td>
 							<td>*******</td>
 						</tr>
 						</tbody>
