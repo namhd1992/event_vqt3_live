@@ -415,11 +415,11 @@ class Lucky_Rotation extends React.Component {
 									this.setState({itemBonus: data.Data, data_auto: list, len_auto:len_auto, closeAuto:true});
 								}else if(data.Status ===2){
 									$('#matluot').modal('show');
-									this.setState({message_error:data.Message, timeWaiting:data.WaitingSeconds})
+									this.setState({message_error:data.Message, timeWaiting:data.WaitingSeconds, startSpin:false})
 									this.timeWaitings(data.WaitingSeconds)
 								}else{
 									$('#myModal11').modal('show');
-									this.setState({message_error:data.Message})
+									this.setState({message_error:data.Message, startSpin:false})
 								}
 							}else{
 								$('#myModal12').modal('show');
