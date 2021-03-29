@@ -58,6 +58,11 @@ import img_giaithuong from './images/img-giaithuong.png';
 import img_moqua from './images/img-moqua.png';
 import loading from './images/loading.gif';
 import giai_dac_biet from './images/giai-dac-biet.jpg';
+import logo_final from './images/logo_final.png';
+import vip_bachkim from './images/vip-bachkim.png';
+import vip_vang from './images/vip-vang.png';
+import vip_bac from './images/vip-bac.png';
+import vip_dong from './images/vip-dong.png';
 
 // import muiten from './images/muiten.png';
 import ReactResizeDetector from 'react-resize-detector'
@@ -867,9 +872,15 @@ class Lucky_Rotation extends React.Component {
 							</canvas> */}
 						{/* <img src={vqmm_p2} alt="Vòng quay may mắn" className="img-fluid"/>     */}
 					</div>
-					<div className="btn-logout">
-						{(isLogin)?(<div><p className="p-0 m-0 text-center">Xin chào {user.Username}</p>
-						<h5 className="text-center" onClick={this.logoutAction}><a style={{cursor:'pointer'}} title="Đăng xuất">Đăng xuất</a></h5></div>):(<h5 className="text-center" onClick={this.loginAction}><a style={{cursor:'pointer'}} title="Đăng nhập" >Đăng nhập</a></h5>)}
+					<div className="btn-logout text-center">
+						{(isLogin)?(<div><p className="p-0 m-0">Xin chào {user.Username}</p>
+						<div>
+							{(user.VipLevel===1)?(<a href="http://vip.scoin.vn" title="VIP Đồng" target="_blank">VIP Đồng <img src={vip_dong} alt="VIP Đồng" width="16" /></a>):(<div></div>)}
+							{(user.VipLevel===2)?(<a href="http://vip.scoin.vn" title="VIP Bạc" target="_blank">VIP Bạc <img src={vip_bac} alt="VIP Bạc" width="16" /></a>):(<div></div>)}
+							{(user.VipLevel===3)?(<a href="http://vip.scoin.vn" title="VIP Vàng" target="_blank">VIP Vàng <img src={vip_vang} alt="VIP Vàng" width="16" /></a>):(<div></div>)}
+							{(user.VipLevel===4)?(<a href="http://vip.scoin.vn" title="VIP bạch kim" target="_blank">VIP Bạch kim <img src={vip_bachkim} alt="VIP Bạch kim" width="16" /></a>):(<div></div>)}
+						</div>
+						<h5 onClick={this.logoutAction}><a style={{cursor:'pointer'}} title="Đăng xuất">Đăng xuất</a></h5></div>):(<h5 onClick={this.loginAction}><a style={{cursor:'pointer'}} title="Đăng nhập" >Đăng nhập</a></h5>)}
 						
 					</div>
 					<div className="btn-quay">
@@ -964,7 +975,7 @@ class Lucky_Rotation extends React.Component {
 
 
 			<div className="container-fluid footer">
-				<p className="text-center"><img src={logo_splay} width="100" alt="" /> <img src={logo_scoin} width="150" hspace="10" alt="" /></p>
+				<p className="text-center"><img src={logo_splay} width="100" alt="" /><a href="https://scoin.vn/"> <img src={logo_scoin} width="120" hspace="10" alt="" /></a><a href="https://vip.scoin.vn/"><img src={logo_final} width="150" hspace="10" alt="" /></a></p>
 				<p className="text-center"><span className="text-uppercase">CÔNG TY CỔ PHẦN VTC DỊCH VỤ DI ĐỘNG</span> <br />VTC Mobile - Thành viên của Tổng Công ty Truyền thông đa phương tiện Việt Nam VTC <br /> Tầng 11, tòa nhà VTC Online, số 18 Tam Trinh, phường Minh Khai, quận Hai Bà Trưng, Hà Nội.
 <br />Tel: (84-4).39877470 <br />Fax: (84-4).39877210<br /> <a href="mailto:vtcmobile@vtc.vn">vtcmobile@vtc.vn</a>
 	</p>

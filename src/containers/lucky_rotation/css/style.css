@@ -36,7 +36,7 @@ html {scroll-behavior: smooth;}
 .logo-p2 {position: absolute; top: 8%; left: 8%; z-index: 99}
 .vqmm {position: absolute; top: 27%; left: 10%; width: 800px; background-image:url(../images/vqmm-p2.png); background-repeat: no-repeat; background-repeat:'none';background-size: 100%; background-position: 'center'}
 .btn-logout{position: absolute; top: 11%; right: 9%; font-size:1.25rem; color:#282652;}
-.btn-logout h5 {background-image:url(../images/btn-dangxuat-p2.png); background-repeat: no-repeat; background-size: 100%; width: 150px; height: 55px;}
+.btn-logout h5 {background-image:url(../images/btn-dangxuat-p2.png); background-repeat: no-repeat; background-size: 100%; width: 150px; height: 55px;margin: 0 auto;}
 .btn-logout h5 a {line-height: 50px; color:#282652;}
 .btn-logout h5:hover{
 	opacity: 0.8;
