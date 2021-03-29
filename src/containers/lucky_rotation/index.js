@@ -57,6 +57,7 @@ import img_livestream from './images/img-livestream.png';
 import img_giaithuong from './images/img-giaithuong.png';
 import img_moqua from './images/img-moqua.png';
 import loading from './images/loading.gif';
+import giai_dac_biet from './images/giai-dac-biet.jpg';
 
 // import muiten from './images/muiten.png';
 import ReactResizeDetector from 'react-resize-detector'
@@ -1208,6 +1209,9 @@ class Lucky_Rotation extends React.Component {
 								<p class="card-text text-secondary">Hết hạn: {dataItem.ExpiredDate}</p>
 								<p class="card-text"></p>
 								</div>
+							</div>):(<div></div>)}
+							{(dataItem.Type==='SpecialAward')?(<div class="modal-body mx-auto text-center">
+									<img src={giai_dac_biet} class="img-fluid" />
 							</div>):(<div></div>)}
 							
 						</div>       
