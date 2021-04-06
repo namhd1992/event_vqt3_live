@@ -429,7 +429,7 @@ class Lucky_Rotation extends React.Component {
 								}
 							}else{
 								$('#myModal12').modal('show');
-								this.setState({server_err:true})
+								this.setState({server_err:true, startSpin:false})
 							}
 						})
 						
