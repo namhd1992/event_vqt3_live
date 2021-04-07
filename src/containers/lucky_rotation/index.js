@@ -150,6 +150,7 @@ class Lucky_Rotation extends React.Component {
 			startSpin:false,
 			len_auto:0,
 			waiting:false,
+			urlVideo:''
 		};
 	}
 	componentWillMount(){
@@ -421,8 +422,10 @@ class Lucky_Rotation extends React.Component {
 									this.setState({itemBonus: data.Data, data_auto: list, len_auto:len_auto, closeAuto:true});
 								}else if(data.Status ===2){
 									$('#matluot').modal('show');
-									this.setState({message_error:data.Message, timeWaiting:data.WaitingSeconds, startSpin:false})
-									this.timeWaitings(data.WaitingSeconds)
+									var urlVideo="https://www.youtube.com/embed/"+data.Data.VideoId+"?autoplay=1&mute=1"
+									var intervalWaiting = setInterval(this.timeWaitings(data.WaitingSeconds), 1000);
+									this.setState({message_error:data.Message, timeWaiting:data.WaitingSeconds, startSpin:false, urlVideo:urlVideo, intervalWaiting:intervalWaiting})
+									
 								}else{
 									$('#myModal11').modal('show');
 									this.setState({message_error:data.Message, startSpin:false})
@@ -497,7 +500,7 @@ class Lucky_Rotation extends React.Component {
    			this.setState({intervalId: intervalId, isSpin: true, closeAuto:false, wheelSpinning: false, startSpin:false});
 			
 		}else{
-			if(itemBonus.AwardId===12){
+			if(itemBonus.AwardId===4){
 				$('#myModal11').modal('show');
 				this.setState({message_error: 'Bạn đã quay vào ô mất lượt.'});		
 			}else if(itemBonus.AwardId===11){
@@ -585,7 +588,14 @@ class Lucky_Rotation extends React.Component {
 		}, 1000);
 	}
 
+	// timeWaitings=(time)=>{
+	// 	var minute=Math.floor(time/60) > 9 ? Math.floor(time/60) : `0${Math.floor(time/60)}`;
+	// 	var second=Math.ceil(time%60) > 9 ? Math.ceil(time%60) : `0${Math.ceil(time%60)}`;
+	// 	this.setState({minute_live: minute, second_live:second})
+	// }
+
 	timeWaitings=(time)=>{
+		console.log("AAAAAAAAAAA")
 		var minute=Math.floor(time/60) > 9 ? Math.floor(time/60) : `0${Math.floor(time/60)}`;
 		var second=Math.ceil(time%60) > 9 ? Math.ceil(time%60) : `0${Math.ceil(time%60)}`;
 		this.setState({minute_live: minute, second_live:second})
@@ -815,7 +825,7 @@ class Lucky_Rotation extends React.Component {
 		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	}
 	render() {
-		const {xacthuc, scoinCard,height, width, dialogLoginOpen, dialogBonus, auto, dialogWarning, textWarning, isLogin, userTurnSpin, day, hour, minute, second,len_auto, code,numberPage, img_status, message_status, data_auto,message_error,linkLiveStream,dataItem,startSpin,
+		const {xacthuc,urlVideo, scoinCard,height, width, dialogLoginOpen, dialogBonus, auto, dialogWarning, textWarning, isLogin, userTurnSpin, day, hour, minute, second,len_auto, code,numberPage, img_status, message_status, data_auto,message_error,linkLiveStream,dataItem,startSpin,
 			waiting, activeTuDo, activeHistory, activeCodeBonus, activeVinhDanh, limit, countCodeBonus, countTuDo, countHistory, countVinhDanh, listHistory, listCodeBonus, listTuDo, listVinhDanh,itemBonus, turnsFree, noti_mdt, noti_tudo, hour_live, minute_live, second_live, isLive, user}=this.state;
 		const { classes } = this.props;
 		const notification_mdt=noti_mdt?(<span className="badge badge-pill badge-danger position-absolute noti-mdt">!</span>):(<span></span>);
@@ -1534,23 +1544,40 @@ class Lucky_Rotation extends React.Component {
 
 				
 
-				<div className="modal fade" id="matluot">
+				{/* <div className="modal fade" id="matluot">
 					<div className="modal-dialog">
 						<div className="modal-content popup-phanthuong">
-
-						{/* <!-- Modal Header --> */}
 						<div className="modal-header border-bottom-0">
 							<h4 className="modal-title w-100 text-center"><img src={img_thongbao} alt="" /></h4>
 							<button type="button" className="close" data-dismiss="modal"><img src={btn_close} alt="Đóng" /></button>
 						</div>
-
-						{/* <!-- Modal body --> */}
 						<div className="modal-body">
 							<div className="table-responsive mt-2">              
 								<h5 className="text-thele lead text-center">{message_error}</h5>
 								<h5 className="text-thele lead text-center">Thời gian còn lại: {minute_live} : {second_live}</h5>
 
 							</div>       
+						</div>
+
+						</div>
+					</div>
+				</div> */}
+
+				<div class="modal fade" data-backdrop="static" id="matluot">
+					<div class="modal-dialog">
+						<div class="modal-content popup-phanthuong">
+
+						<div class="modal-header border-bottom-0">
+							<h4 class="modal-title w-100 text-center"><img src="images/img-thongbao.png" alt="" /></h4>
+						</div>
+						<div class="modal-body mx-auto w-100 pt-0">         
+							<div align="center" class="embed-responsive embed-responsive-16by9">           
+								<iframe src={urlVideo} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>              
+							</div> 
+							<h5 class="text-thele lead text-center text-danger mt-3">Bạn vừa quay vào ô Mất lượt!</h5>
+							<p class="text-center text-secondary">Bạn còn <span class="text-primary h5">{minute_live} : {second_live}</span> nữa để có thể quay tiếp. Vui lòng chờ…</p>  
+							<a type="button"class="btn btn-xacnhan text-white btn-block text-center py-2">00:59</a>
+					
 						</div>
 
 						</div>
