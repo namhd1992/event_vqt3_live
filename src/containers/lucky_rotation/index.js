@@ -389,63 +389,56 @@ class Lucky_Rotation extends React.Component {
 	}
 
 	start=()=>{
-		const {turnsFree, itemOfSpin, luckySpin, isSpin, closeAuto}=this.state;
+		const {turnsFree, itemOfSpin, isSpin, closeAuto}=this.state;
 		var _this = this;
 		var user = JSON.parse(localStorage.getItem("user"));
 		// var user = 'nambv';
-		var time=Date.now();
-		if(time > luckySpin.endDate){
-			this.setState({message_status:"Vòng quay đã kết thúc."},()=>{
-				$('#myModal8').modal('show');
-			})
-		}else{
-			if (user !== null) {
-				if(user.VipLevel!==0){
-					if(turnsFree>0){
-						// $('#Loading').modal('show');
-						this.props.pickCard(user.Token).then(()=>{
-							// $('#Loading').modal('hide');
-							var data=this.props.dataPick;
-							console.log(data)
-							var list=this.state.data_auto;
-							if(data!==undefined){
-								if(data.Status ===0){
-									var id=data.Data.AwardId;
-									var pos=0
-									pos = itemOfSpin.map(function(e) { return e.Id; }).indexOf(id);
-									list.unshift(data.Data.AwardName);
-									var len_auto=list.length;
-									
-									this.resetWheel();
-									if(!isSpin && closeAuto){
-										this.startSpin(pos+1);
-									}	
-									this.setState({itemBonus: data.Data, data_auto: list, len_auto:len_auto, closeAuto:true});
-								}else if(data.Status ===2){
-									$('#matluot').modal('show');
-									var urlVideo="https://www.youtube.com/embed/"+data.Data.VideoId+"?autoplay=1&mute=1"
-									var intervalWaiting = setInterval(this.timeWaitings, 1000);
-									this.setState({message_error:data.Message, timeWaiting:data.WaitingSeconds, startSpin:false, urlVideo:urlVideo, intervalWaiting:intervalWaiting})
-									
-								}else{
-									$('#myModal11').modal('show');
-									this.setState({message_error:data.Message, startSpin:false})
-								}
+		if (user !== null) {
+			if(user.VipLevel!==0){
+				if(turnsFree>0){
+					// $('#Loading').modal('show');
+					this.props.pickCard(user.Token).then(()=>{
+						// $('#Loading').modal('hide');
+						var data=this.props.dataPick;
+						console.log(data)
+						var list=this.state.data_auto;
+						if(data!==undefined){
+							if(data.Status ===0){
+								var id=data.Data.AwardId;
+								var pos=0
+								pos = itemOfSpin.map(function(e) { return e.Id; }).indexOf(id);
+								list.unshift(data.Data.AwardName);
+								var len_auto=list.length;
+								
+								this.resetWheel();
+								if(!isSpin && closeAuto){
+									this.startSpin(pos+1);
+								}	
+								this.setState({itemBonus: data.Data, data_auto: list, len_auto:len_auto, closeAuto:true});
+							}else if(data.Status ===2){
+								$('#matluot').modal('show');
+								var urlVideo="https://www.youtube.com/embed/"+data.Data.VideoId+"?autoplay=1&mute=1"
+								var intervalWaiting = setInterval(this.timeWaitings, 1000);
+								this.setState({message_error:data.Message, timeWaiting:data.WaitingSeconds, startSpin:false, urlVideo:urlVideo, intervalWaiting:intervalWaiting})
+								
 							}else{
-								$('#myModal12').modal('show');
-								this.setState({server_err:true, startSpin:false})
+								$('#myModal11').modal('show');
+								this.setState({message_error:data.Message, startSpin:false})
 							}
-						})
-						
-					}else{
-						$('#myModal6').modal('show');
-					}
+						}else{
+							$('#myModal12').modal('show');
+							this.setState({server_err:true, startSpin:false})
+						}
+					})
+					
 				}else{
-					$('#activeVip').modal('show');
+					$('#myModal6').modal('show');
 				}
-			} else {
-				$('#myModal5').modal('show');
+			}else{
+				$('#activeVip').modal('show');
 			}
+		} else {
+			$('#myModal5').modal('show');
 		}
 		
 	}
@@ -521,7 +514,7 @@ class Lucky_Rotation extends React.Component {
 
 
 	autoRotation=()=>{
-		const {turnsFree, luckySpin}=this.state;
+		const {turnsFree}=this.state;
 		if(turnsFree>0){
 			this.getDetailData();
 		}else{
@@ -654,7 +647,7 @@ class Lucky_Rotation extends React.Component {
 	}
 
 	getDataTuDo=(user)=>{
-		const {luckySpin, limit, activeTuDo}=this.state;
+		const {limit, activeTuDo}=this.state;
 		var offsetTuDo=(activeTuDo-1)*limit;
 		// $('#Loading').modal('show');
 		this.props.getTuDo(user.Token, limit, offsetTuDo).then(()=>{
@@ -677,7 +670,7 @@ class Lucky_Rotation extends React.Component {
 	}
 
 	getHistory=(user)=>{
-		const {luckySpin, limit, activeHistory}=this.state;
+		const {limit, activeHistory}=this.state;
 		var offsetHistory=(activeHistory-1)*limit;
 		// $('#Loading').modal('show');
 		this.props.getHistoryTuDo(user.Token, limit, offsetHistory).then(()=>{
