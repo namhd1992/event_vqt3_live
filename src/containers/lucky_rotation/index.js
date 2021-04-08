@@ -1128,7 +1128,8 @@ class Lucky_Rotation extends React.Component {
 													<td className="border-right-0">{obj.AwardName}</td>
 													<td className="border-left-0 border-right-0">{obj.AwardSpecific}</td>
 													<td className="border-left-0 border-right-0">{this.timeConverter(obj.SpinTime)}</td>
-													<td class="border-left-0"><a class="text-primary"  style={{cursor:'pointer'}} onClick={()=>this.getItem(user, obj)}>Mở</a></td>
+													{(obj.AwardSpecific.indexOf("Thêm")===0)?(<td class="border-left-0 text-secondary">Mở</td>):(<td class="border-left-0"><a class="text-primary"  style={{cursor:'pointer'}} onClick={()=>this.getItem(user, obj)}>Mở</a></td>)}
+													
 												</tr>
 											))}
 										</tbody>
