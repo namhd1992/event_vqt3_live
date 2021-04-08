@@ -77,6 +77,7 @@ const styles = {
 };
 
 var award_open=true;
+var n=0;
 
 class Lucky_Rotation extends React.Component {
 
@@ -423,7 +424,7 @@ class Lucky_Rotation extends React.Component {
 								}else if(data.Status ===2){
 									$('#matluot').modal('show');
 									var urlVideo="https://www.youtube.com/embed/"+data.Data.VideoId+"?autoplay=1&mute=1"
-									var intervalWaiting = setInterval(this.timeWaitings(data.WaitingSeconds), 1000);
+									var intervalWaiting = setInterval(this.timeWaitings, 1000);
 									this.setState({message_error:data.Message, timeWaiting:data.WaitingSeconds, startSpin:false, urlVideo:urlVideo, intervalWaiting:intervalWaiting})
 									
 								}else{
@@ -594,11 +595,16 @@ class Lucky_Rotation extends React.Component {
 	// 	this.setState({minute_live: minute, second_live:second})
 	// }
 
-	timeWaitings=(time)=>{
-		console.log("AAAAAAAAAAA")
-		var minute=Math.floor(time/60) > 9 ? Math.floor(time/60) : `0${Math.floor(time/60)}`;
-		var second=Math.ceil(time%60) > 9 ? Math.ceil(time%60) : `0${Math.ceil(time%60)}`;
-		this.setState({minute_live: minute, second_live:second})
+	timeWaitings=()=>{
+		const current=this.state.timeWaiting;
+		console.log(current)
+		if(current>=0){
+			var minute=Math.floor(((current%86400)%3600)/60) > 9 ? Math.floor(((current%86400)%3600)/60) : `0${Math.floor(((current%86400)%3600)/60)}`;
+			var second=Math.ceil(((current%86400)%3600)%60) > 9 ? Math.ceil(((current%86400)%3600)%60) : `0${Math.ceil(((current%86400)%3600)%60)}`;
+			this.setState({minute_live: minute, second_live:second, timeWaiting:current-1})
+		}else{
+			clearInterval(this.state.intervalWaiting);
+		}
 	}
 
 	timeConverter=(time)=>{
@@ -617,7 +623,9 @@ class Lucky_Rotation extends React.Component {
 	  }
 
 
-
+	closeMatLuot=()=>{
+		$('#matluot').modal('hide'); 
+	}
 	showModalBonus=()=>{
 		$('#myModal').modal('show'); 
 	}
@@ -825,7 +833,7 @@ class Lucky_Rotation extends React.Component {
 		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	}
 	render() {
-		const {xacthuc,urlVideo, scoinCard,height, width, dialogLoginOpen, dialogBonus, auto, dialogWarning, textWarning, isLogin, userTurnSpin, day, hour, minute, second,len_auto, code,numberPage, img_status, message_status, data_auto,message_error,linkLiveStream,dataItem,startSpin,
+		const {xacthuc,urlVideo,timeWaiting, scoinCard,height, width, dialogLoginOpen, dialogBonus, auto, dialogWarning, textWarning, isLogin, userTurnSpin, day, hour, minute, second,len_auto, code,numberPage, img_status, message_status, data_auto,message_error,linkLiveStream,dataItem,startSpin,
 			waiting, activeTuDo, activeHistory, activeCodeBonus, activeVinhDanh, limit, countCodeBonus, countTuDo, countHistory, countVinhDanh, listHistory, listCodeBonus, listTuDo, listVinhDanh,itemBonus, turnsFree, noti_mdt, noti_tudo, hour_live, minute_live, second_live, isLive, user}=this.state;
 		const { classes } = this.props;
 		const notification_mdt=noti_mdt?(<span className="badge badge-pill badge-danger position-absolute noti-mdt">!</span>):(<span></span>);
@@ -1576,8 +1584,7 @@ class Lucky_Rotation extends React.Component {
 							</div> 
 							<h5 class="text-thele lead text-center text-danger mt-3">Bạn vừa quay vào ô Mất lượt!</h5>
 							<p class="text-center text-secondary">Bạn còn <span class="text-primary h5">{minute_live} : {second_live}</span> nữa để có thể quay tiếp. Vui lòng chờ…</p>  
-							<a type="button"class="btn btn-xacnhan text-white btn-block text-center py-2">00:59</a>
-					
+							{(timeWaiting===-1)?(<a type="button"class="btn btn-xacnhan text-white btn-block text-center py-2" onClick={this.closeMatLuot}>Đóng</a>):(<div></div>)}
 						</div>
 
 						</div>
