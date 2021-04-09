@@ -1233,6 +1233,13 @@ class Lucky_Rotation extends React.Component {
 								<p class="card-text"></p>
 								</div>
 							</div>):(<div></div>)}
+							{(dataItem.Type==='BankTransferVoucher')?(<div class="card bg-light mx-auto" style={{width:300}}>
+								<div class="card-body text-center">
+								<p class="card-text text-primary mb-3 h4">Nội dung: {dataItem.Message}</p>
+								<p class="card-text text-secondary">Hết hạn: {dataItem.ExpiredDate}</p>
+								<p class="card-text"></p>
+								</div>
+							</div>):(<div></div>)}
 							{(dataItem.Type==='SpecialAward')?(<div class="modal-body mx-auto text-center">
 									<img src={giai_dac_biet} class="img-fluid" />
 							</div>):(<div></div>)}
