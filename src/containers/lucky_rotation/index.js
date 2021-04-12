@@ -1059,16 +1059,18 @@ class Lucky_Rotation extends React.Component {
 										<td>4</td>
 										<td>VIP Bạch kim</td>
 										<td>20</td>
-									</tr>                  
+									</tr>
+									<tr>
+										<td colspan="3" class="font-italic small text-danger">* Lưu ý: Các lượt quay không được cộng dồn sang ngày kế tiếp.</td>
+									</tr>                          
 									</tbody>
 								</table>
 							</div>
-							<p class="text-thele pt-3 pl-3"> &bull; Bước 3: Chơi vòng quay tại link: <a href="https://vqmmvip.splay.vn" title="https://vqmmvip.splay.vn">https://vqmmvip.splay.vn</a>(Cần đăng nhập bằng tài khoản Scoin để chơi).</p>
+							<p class="text-thele pt-3 pl-3"> &bull; Bước 3: Chơi vòng quay tại link: <a href="https://vqmm.splay.vn" title="https://vqmm.splay.vn">https://vqmm.splay.vn</a>(Cần đăng nhập bằng tài khoản Scoin để chơi).</p>
 						<h3 class="text-red">III. Các giải thưởng</h3>
 						<p class="text-thele pl-3"> &bull; Iphone 12 Pro max 256Gb.<br></br>
 							&bull; Thẻ Scoin: sẽ được lưu trữ trong Tủ đồ sự kiện. Khách hàng có thể xem và nạp vào các game của VTC Mobile.<br></br>
 							&bull; Nạp trực tiếp 50k Scoin vào tài khoản người chơi.<br></br>
-							&bull; Giftcode từ cấp độ 1 đến cấp độ 6, sẽ được lưu trữ trong Tủ đồ sự kiện. Khách hàng có thể xem và nạp vào game tương ứng.<br></br>
 							&bull; Hộp quà đặc biệt.
 							</p>
 

@@ -12,7 +12,7 @@ font-style:normal;
 * {font-family: 'mijasultra' !important;}
 html {scroll-behavior: smooth;}
 .page1 {background-image:url(../images/bg1.png);  background-position: top center; background-repeat: no-repeat;}
-.content-inner-p1 {height: 1100px; width: 100%; position: relative; background-image:url(../images/bg1a.png) ; background-position: center 270px; background-repeat: no-repeat; overflow: hidden}
+.content-inner-p1 {height: 1100px; width: 100%; position: relative; background-image:url(../images/bg1a.png) ;background-size: 100%; background-position: center 270px; background-repeat: no-repeat; overflow: hidden}
 .logo-p1 {text-align: center; padding-top: -20px; display: block; position: relative; overflow: auto;}
 .timer-p1 {width: 300px; margin-right: 0}
 .cell-timer-p1 {background:url(../images/bg-time.png) 4px center no-repeat; width: 64px; height:64px; vertical-align:middle !important; line-height:0 !important; padding-left: 2px;}
