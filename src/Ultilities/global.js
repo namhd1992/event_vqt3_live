@@ -56,7 +56,7 @@ class Ultilities {
 		//live
 			// return "https://server.splay.vn/";
 		//dev
-			return "http://171.244.14.138/";
+			return "https://api.splay.vn/luckywheel/";
 	}
 
 	static splay_api_key = () => {
