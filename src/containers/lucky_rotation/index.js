@@ -700,6 +700,9 @@ class Lucky_Rotation extends React.Component {
 					// this.setState({listHistory:data.Data, countHistory:data.Totals})
 					this.setState({dataItem:data.Data})
 					$("#MoQua").modal('show');
+				}else if(data.Status===1){
+					$('#myModal11').modal('show');
+					this.setState({message_error:data.Message})
 				}else{
 					$('#myModal11').modal('show');
 					this.setState({message_error:'Chưa tải được dữ liệu. Vui lòng thử lại'})
