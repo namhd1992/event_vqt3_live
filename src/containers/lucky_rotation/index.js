@@ -271,12 +271,33 @@ class Lucky_Rotation extends React.Component {
 		this.setState({ auto : !this.state.auto});
 	}
 
+	// onResize=()=>{
+	// 	if (window.innerWidth <= 320) {
+	// 		this.setState({ width: 210, height: 235, img_width:170, img_height:170});
+	// 	}
+	// 	if (window.innerWidth > 320 && window.innerWidth <= 480) {
+	// 		this.setState({ width: 250, height: 280, img_width:200, img_height:200});
+	// 	}
+	// 	if (window.innerWidth > 480 && window.innerWidth <= 600) {
+	// 		this.setState({ width: 335, height: 375, img_width:270, img_height:270});
+	// 	}
+	// 	if (window.innerWidth > 600 && window.innerWidth <= 768) {
+	// 		this.setState({ width: 470, height: 525, img_width:375, img_height:375});
+	// 	}
+	// 	if (window.innerWidth > 768 && window.innerWidth < 1024) {
+	// 		this.setState({ width: 504, height: 563, img_width:405, img_height:405});
+	// 	}
+	// 	if (window.innerWidth >= 1024) {
+	// 		this.setState({ width: 670, height: 752, img_width:540, img_height:540});
+	// 	}
+	// }
+
 	onResize=()=>{
 		if (window.innerWidth <= 320) {
 			this.setState({ width: 210, height: 235, img_width:170, img_height:170});
 		}
 		if (window.innerWidth > 320 && window.innerWidth <= 480) {
-			this.setState({ width: 250, height: 280, img_width:200, img_height:200});
+			this.setState({ width: 250, height: 280, img_width:350, img_height:350});
 		}
 		if (window.innerWidth > 480 && window.innerWidth <= 600) {
 			this.setState({ width: 335, height: 375, img_width:270, img_height:270});
