@@ -389,7 +389,7 @@ class Lucky_Rotation extends React.Component {
 	}
 
 	start=()=>{
-		const {turnsFree, itemOfSpin, isSpin, closeAuto}=this.state;
+		const {turnsFree, itemOfSpin, isSpin, closeAuto, auto}=this.state;
 		var _this = this;
 		var user = JSON.parse(localStorage.getItem("user"));
 		// var user = 'nambv';
@@ -416,6 +416,11 @@ class Lucky_Rotation extends React.Component {
 								}	
 								this.setState({itemBonus: data.Data, data_auto: list, len_auto:len_auto, closeAuto:true});
 							}else if(data.Status ===2){
+								if(auto){
+									clearInterval(this.state.intervalId);
+									this.setState({ isSpin:false, closeAuto:false});
+									$('#myModal9').modal('hide');
+								}
 								$('#matluot').modal('show');
 								var urlVideo="https://www.youtube.com/embed/"+data.Data.VideoId+"?autoplay=1&mute=1"
 								var intervalWaiting = setInterval(this.timeWaitings, 1000);
@@ -1240,9 +1245,12 @@ class Lucky_Rotation extends React.Component {
 							</div>):(<div></div>)}
 							{(dataItem.Type==='BankTransferVoucher')?(<div class="card bg-light mx-auto" style={{width:300}}>
 								<div class="card-body text-center">
-								<p class="card-text text-primary mb-3 h4">Nội dung: {dataItem.Message}</p>
+								<p class="card-text mb-3 text-primary h4">Tài khoản <span class="text-danger">{dataItem.AccountName}</span> nhận được thẻ Scoin Voucher 20K khi nạp Scoin qua Chuyển khoản Ngân hàng. </p>
+                    			<p class="card-text border-bottom text-dark mb-3 h5">Bạn hãy nạp Scoin để nhận khuyến mại nhé!</p>
 								<p class="card-text text-secondary">Hết hạn: {dataItem.ExpiredDate}</p>
-								<p class="card-text"></p>
+								<div class="modal-footer justify-content-center">
+									<a href="https://scoin.vn/nap-tien#9" type="button" class="btn btn-danger" target="_blank">Nạp ngay</a>
+								</div>
 								</div>
 							</div>):(<div></div>)}
 							{(dataItem.Type==='SpecialAward')?(<div class="modal-body mx-auto text-center">
