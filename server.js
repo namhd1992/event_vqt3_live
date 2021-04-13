@@ -18,11 +18,11 @@ app.get('/', function(request, response) {
     if (err) {
       return console.log(err);
     }
-    data = data.replace(/\$OG_URL/g, 'https://vongquayt10.splay.vn/');
+    data = data.replace(/\$OG_URL/g, 'https://vqmm.splay.vn/');
     data = data.replace(/\$OG_TYPE/g, "Game");
-    data = data.replace(/\$OG_TITLE/g, 'Vòng Quay tháng 10 - Thử vận may rinh ngay Iphone 11 Pro Max');
-    data = data.replace(/\$OG_DESCRIPTION/g, "SK khuyến mại thẻ Scoin từ 28/10 - 04/11/2019 dành cho tất cả game thủ VTC Mobile.");
-    result = data.replace(/\$OG_IMAGE/g, 'https://i.postimg.cc/x10vmZXK/sharepost-vqt10.jpg');
+    data = data.replace(/\$OG_TITLE/g, 'TÍCH CỰC QUAY TAY - RINH NGAY IPHONE 12 PRO MAX');
+    data = data.replace(/\$OG_DESCRIPTION/g, "Hàng ngàn phần quà HOT đang chờ đón tại minigame Vòng quay may mắn Scoin VIP. SK dành cho KH VIP từ 15/4 - 14/5/2021.");
+    result = data.replace(/\$OG_IMAGE/g, 'https://i.postimg.cc/QCT4mNV7/sharepost-vqt10.png');
     response.send(result);
   });
 });
