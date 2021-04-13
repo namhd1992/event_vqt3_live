@@ -297,7 +297,7 @@ class Lucky_Rotation extends React.Component {
 			this.setState({ width: 210, height: 235, img_width:170, img_height:170});
 		}
 		if (window.innerWidth > 320 && window.innerWidth <= 480) {
-			this.setState({ width: 250, height: 280, img_width:350, img_height:350});
+			this.setState({ width: 450, height: 450, img_width:350, img_height:350});
 		}
 		if (window.innerWidth > 480 && window.innerWidth <= 600) {
 			this.setState({ width: 335, height: 375, img_width:270, img_height:270});
