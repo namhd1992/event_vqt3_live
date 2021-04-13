@@ -297,7 +297,7 @@ class Lucky_Rotation extends React.Component {
 			this.setState({ width: 210, height: 235, img_width:170, img_height:170});
 		}
 		if (window.innerWidth > 320 && window.innerWidth <= 480) {
-			this.setState({ width: 450, height: 450, img_width:350, img_height:350});
+			this.setState({ width: 345, height: 383, img_width:275, img_height:275});
 		}
 		if (window.innerWidth > 480 && window.innerWidth <= 600) {
 			this.setState({ width: 335, height: 375, img_width:270, img_height:270});
@@ -309,7 +309,7 @@ class Lucky_Rotation extends React.Component {
 			this.setState({ width: 504, height: 563, img_width:405, img_height:405});
 		}
 		if (window.innerWidth >= 1024) {
-			this.setState({ width: 670, height: 752, img_width:540, img_height:540});
+			this.setState({ width: 600, height: 652, img_width:500, img_height:500});
 		}
 	}
 
@@ -663,10 +663,13 @@ class Lucky_Rotation extends React.Component {
 
 	showModalTuDo=()=>{
 		var user = JSON.parse(localStorage.getItem("user"));
-		// var user='nambv'
 		if (user !== null) {
-			this.getDataTuDo(user);
-			$('#myModal4').modal('hide');
+			if(user.VipLevel!==0){
+				this.getDataTuDo(user);
+				$('#myModal4').modal('hide');
+			}else{
+				$('#activeVip').modal('show');
+			}
 		}else {
 			$('#myModal5').modal('show');
 		}
@@ -887,7 +890,7 @@ class Lucky_Rotation extends React.Component {
 							</div>
 						</div> 
 					</div>
-					<p className="btn-thamgiangay"><a href="#p2" title="Tham gia ngay"><img src={thamgiangay} alt="Tham gia ngay" width="200" className="img-fluid" /></a></p>
+					<p className="btn-thamgiangay"><a href="#logo-p2" title="Tham gia ngay"><img src={thamgiangay} alt="Tham gia ngay" width="200" className="img-fluid" /></a></p>
 					<div className="position-absolute-p1">
 						<ul className="nav flex-column menu-left-p1">
 							<li className="pt-6"><a href="https://vip.scoin.vn/" title="Active ViP" target="_blank">Active ViP</a></li>
@@ -903,7 +906,7 @@ class Lucky_Rotation extends React.Component {
 
 			<div id="p2" className="container-fluid page2">
 				<div className="container content-inner-p2">
-					<h1 className="logo-p2"><img src={logo} alt="Logo" width="600" className="img-fluid" /></h1>
+					<h1 id="logo-p2" className="logo-p2"><img src={logo} alt="Logo" width="400" className="img-fluid" /></h1>
 					<div className="vqmm">
 							<canvas style={{}} id="canvas" width={width} height={height} data-responsiveMinWidth="180"  data-responsiveScaleHeight="true">		
 							</canvas>
@@ -946,7 +949,7 @@ class Lucky_Rotation extends React.Component {
 
 			<div className="container jumbotron">
 				<h2 id="bvd" className="d-block btn-ketqua mt-5"><img src={icon_bangvinhdanh} alt="icon" />Bảng vinh danh</h2>
-				<div className="table-responsive mt-4">
+				<div className="table-responsive giaithuong-pc">
 					<table className="table table-borderless tbl-bvd mx-auto text-center">
 						<thead>
 						<tr className="text-uppercase title-bvd">
@@ -974,6 +977,46 @@ class Lucky_Rotation extends React.Component {
 									<td className="border-left-0">{this.timeConverter(obj.SpinTime)}</td>
 								</tr>
 							))}
+						</tbody>
+					</table>
+					<div className="pagination justify-content-center pag-custom">
+						<Pagination
+							activePage={activeVinhDanh}
+							itemsCountPerPage={10}
+							totalItemsCount={countVinhDanh}
+							pageRangeDisplayed={numberPage}
+							lastPageText={'Trang cuối'}
+							firstPageText={'Trang đầu'}
+							itemClass={"page-item"}
+							linkClass={"page-link"}
+							onChange={(v) => this.handlePageChangeVinhDanh(v)}
+						/>
+					</div> 
+				</div>
+				<div className="giaithuong-mobile text-center">
+					<table class="table table-borderless mx-auto">
+						<thead>
+						<tr class="badge-warning border">
+							<th>
+								<p class="mb-0">Tên: <span class="h4 text-danger">*******</span></p>
+								<p class="mb-0">Giải thưởng: <span class="h4 text-danger">iPhone 12 Pro Max 256GB</span></p>
+								<p class="mb-0">Thời gian trúng: <span class="h4 text-danger">*******</span></p>
+							</th>
+						</tr>
+						</thead>
+					</table>
+					<table class="table table-bordered mx-auto">            
+						<tbody>
+							{listVinhDanh.map((obj, key) => (
+								<tr key={key}>
+									<td>
+									<p class="mb-3">Tên: <span class="h5">{obj.Username}</span></p>
+									<p class="mb-3">Giải thưởng: {obj.AwardName}</p>
+									<p class="mb-0">Thời gian trúng: {this.timeConverter(obj.SpinTime)}</p>
+									</td>
+								</tr>
+							))}
+						
 						</tbody>
 					</table>
 					<div className="pagination justify-content-center pag-custom">
@@ -1730,7 +1773,7 @@ class Lucky_Rotation extends React.Component {
 							</div>
 							<div class="modal-body">
 								<div class="table-responsive mt-2">              
-									<h5 class="text-thele lead text-center">Bạn cần active tài khoản VIP để chơi.</h5>
+									<h5 class="text-thele lead text-center">Tài khoản của bạn chưa phải là Vip. Hãy kích hoạt tài khoản Vip để chơi.</h5>
 									<a href="https://vip.scoin.vn" type="button" target="_blank" class="btn btn-xacnhan text-white btn-block text-center py-4">Trang chủ VIP</a>
 								</div>       
 							</div>
