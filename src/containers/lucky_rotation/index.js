@@ -1099,66 +1099,74 @@ class Lucky_Rotation extends React.Component {
 					{/* <!-- Modal body --> */}
 					<div class="modal-body">
 						<h3 class="text-red">I. Đối tượng tham gia</h3>
-						<p class="text-thele pl-3"> &bull; Toàn bộ khách hàng đã active tài khoản khách hàng VIP. Nếu chưa active và chưa là khách hàng VIP, Khách hàng vui lòng thực hiện active và trở thành VIP <code><a href="https://vip.scoin.vn" title="Đăng ký" target="_blank" class="text-primary">tại đây</a></code>. <br />
-        &bull;  Điều kiện để tham gia game VQMM là: là khách hàng VIP; đã active tài khoản VIP.</p>
-						<h3 class="text-red">II. Cách thức tham gia sự kiện</h3>
-						<p class="text-thele pt-3 pl-3"> &bull; Bước 1:  Trở thành khách hàng VIP <br />
-					&bull; Bước 2: Nhận lượt quay miễn phí hằng ngày, tương ứng với cấp VIP</p>
-							<div class="table-responsive">
-								<table class="table table-bordered text-center text-thele">
-									<thead>
-									<tr>
-										<th>STT</th>
-										<th>Cấp VIP</th>
-										<th>Số lượt quay/ngày</th>
-									</tr>
-									</thead>
-									<tbody>
-									<tr>
-										<td>1</td>
-										<td>VIP Đồng</td>
-										<td>5</td>
-									</tr>
-									<tr>
-										<td>2</td>
-										<td>VIP Bạc</td>
-										<td>10</td>
-									</tr>
-									<tr>
-										<td>3</td>
-										<td>VIP Vàng</td>
-										<td>15</td>
-									</tr>
-									<tr>
-										<td>4</td>
-										<td>VIP Bạch kim</td>
-										<td>20</td>
-									</tr>
-									<tr>
-										<td colspan="3" class="font-italic small text-danger">* Lưu ý: Các lượt quay không được cộng dồn sang ngày kế tiếp.</td>
-									</tr>                          
-									</tbody>
-								</table>
-							</div>
-							<p class="text-thele pt-3 pl-3"> &bull; Bước 3: Chơi vòng quay tại link: <a href="https://vqmm.splay.vn" title="https://vqmm.splay.vn">https://vqmm.splay.vn</a>(Cần đăng nhập bằng tài khoản Scoin để chơi).</p>
-						<h3 class="text-red">III. Các giải thưởng</h3>
-						<p class="text-thele pl-3"> &bull; Iphone 12 Pro max 256Gb.<br></br>
-							&bull; Thẻ Scoin: sẽ được lưu trữ trong Tủ đồ sự kiện. Khách hàng có thể xem và nạp vào các game của VTC Mobile.<br></br>
-							&bull; Nạp trực tiếp 50k Scoin vào tài khoản người chơi.<br></br>
-							&bull; Hộp quà đặc biệt.
-							</p>
-
-
-						<h3 class="text-red">IV. Thời gian trao thưởng</h3>
-							<p class="text-thele pl-3"> &bull; Công ty cổ phần VTC Dịch vụ di động sẽ trao giải thưởng cho khách hàng chậm nhất sau 15 ngày làm việc kể từ khi kết thúc sự kiện.</p>
-								<p class="text-thele pl-3"><code>Lưu ý:</code>  <br />&bull; Khi đến nhận giải thưởng, khách hàng cần đem theo giấy tờ tùy thân (CMND/ CCCD/ Hộ chiếu còn hiệu lực. 
-								Theo khoản 6, điều 3, chương 1 của Luật thuế thu nhập cá nhân, những người may mắn trúng giải thưởng hiện vật có giá trị kinh tế cao có nghĩa vụ nộp thuế theo quy định của Nhà nước. 
-								Thông tin chi tiết xem <code><a href="https://www.mof.gov.vn/webcenter/portal/mttpltc/r/m/pchtrphlu/pchtrthtu/pchtrthtu_chitiet?dDocName=BTC260955&dID=31536&_afrLoop=73261410332298795#!%40%40%3F_afrLoop%3D73261410332298795%26centerWidth%3D100%2525%26dDocName%3DBTC260955%26dID%3D31536%26leftWidth%3D0%2525%26rightWidth%3D0%2525%26showFooter%3Dfalse%26showHeader%3Dfalse%26_adf.ctrl-state%3D1a8d3rpn02_4" title="tại đây" target="_blank" class="text-primary">tại đây</a></code>.<br></br>
-						&bull; Trong tất cả các trường hợp, quyết định của Công ty cổ phần VTC Dịch vụ di động là quyết định cuối cùng. Mọi trường hợp gian lận hoặc không trung thực sẽ bị xử lý theo pháp luật.
-
-
-						</p>
+						<p class="text-thele pl-3"> &bull; Toàn bộ khách hàng đã active tài khoản khách hàng VIP. <br />
+						&bull;  Nếu chưa là khách hàng VIP, bạn vui lòng thực hiện active và trở thành VIP <code><a href="https://vip.scoin.vn" title="Đăng ký" target="_blank" class="text-primary">tại đây</a></code>.</p>
+						<h3 class="text-red">II. Thời gian diễn ra</h3>
+						<p class="text-thele pl-3">&bull; Sự kiện được diễn ra từ ngày 15/04/2021 đến hết ngày 14/05/2021.</p>
+						<h3 class="text-red">III. Cách thức tham gia sự kiện</h3>
+						<p class="text-thele pt-3 pl-3"> &bull; Bước 1:  Truy cập link: <a href="https://vqmm.splay.vn" title="https://vqmm.splay.vn">https://vqmm.splay.vn</a>, đăng nhập bằng tài khoản Scoin để nhận được số lượt quay miễn phí tương ứng với cấp VIP của bạn. Cụ thể như sau:</p>
+						<div class="table-responsive">
+							<table class="table table-bordered text-center text-thele">
+								<thead>
+								<tr>
+									<th>STT</th>
+									<th>Cấp VIP</th>
+									<th>Số lượt quay/ngày</th>
+								</tr>
+								</thead>
+								<tbody>
+								<tr>
+									<td>1</td>
+									<td>VIP Đồng</td>
+									<td>5</td>
+								</tr>
+								<tr>
+									<td>2</td>
+									<td>VIP Bạc</td>
+									<td>10</td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>VIP Vàng</td>
+									<td>15</td>
+								</tr>
+								<tr>
+									<td>4</td>
+									<td>VIP Bạch kim</td>
+									<td>20</td>
+								</tr>
+								<tr>
+									<td colspan="3" class="font-italic small text-danger">* Lưu ý: Các lượt quay không được cộng dồn sang ngày kế tiếp.</td>
+								
+								</tr>                 
+								</tbody>
+							</table>
 						</div>
+						<p class="text-thele pt-3 pl-3"> &bull; Bước 2: Tại Trang sự kiện, bạn click nút <mark>Quay</mark> hoặc <mark>Chọn quay tự động</mark> để tham gia chơi.</p>
+						<h3 class="text-red">IV. Giải thưởng</h3>
+						<p class="text-thele pl-3">Tham gia Vòng quay may mắn VIP, Khách hàng có cơ hội nhận được giải thưởng hấp dẫn gồm:</p>
+						<p class="text-thele pl-3"> &bull; Iphone 12 Pro max 256Gb.<br></br>
+				&bull; Thẻ Scoin các mệnh giá 10k, 20k, 50k, 100k, 200k, 500k, 1 triệu, 2 triệu, 5 triệu.<br></br>
+				&bull; Nạp trực tiếp 50k Scoin vào tài khoản người chơi.<br></br>
+				&bull; Thẻ voucher: gồm thẻ voucher scoin hoặc thẻ voucher chuyển khoản ngân hàng, khách hàng có thể sử dụng để nhận khuyến mại trong những lần nạp thẻ tiếp theo.<br />
+				&bull; Hộp quà đặc biệt: là 1 phần quà bí mật dành tặng Khách hàng.
+				</p>
+				<p class="text-thele pl-3 font-italic mark">* Lưu ý: <br />
+
+				&bull; Các giải thưởng được lưu lại trong Tủ đồ, Khách hàng click vào Tủ đồ để xem lại và sử dụng. <br />
+				&bull; Giải thưởng thẻ scoin và thẻ voucher có hiệu lực trong vòng 1 tháng kể từ thời điểm kết thúc sự kiện. Hết thời gian kể trên, giải thưởng không còn giá trị. <br />
+				&bull; Toàn bộ giải thưởng không được quy đổi thành tiền mặt.</p>
+
+
+						<h3 class="text-red">V. Các quy định khác</h3>
+						<p class="text-thele pl-3"> &bull; Công ty cổ phần VTC Dịch vụ di động sẽ thực hiện trao thưởng cho khách hàng chậm nhất sau 15 ngày làm việc kể từ khi kết thúc sự kiện.</p>
+						<p class="text-thele pl-3">&bull; Đối với các khách hàng trúng giải: theo khoản 6, điều 3, chương 1 của Luật thuế thu nhập cá nhân, những người may mắn trúng giải thưởng hiện vật có giá trị kinh tế cao có nghĩa vụ nộp thuế theo quy định của Nhà nước. Thông tin chi tiết xem <code><a href="http://vanban.chinhphu.vn/portal/page/portal/chinhphu/hethongvanban?class_id=1&_page=1&mode=detail&document_id=51258" title="tại đây" target="_blank" class="text-primary">tại đây</a></code>.<br></br>
+				&bull; Trong trường hợp phát sinh tranh chấp, khiếu nại liên quan đến chương trình, Công ty cổ phần VTC Dịch vụ di động sẽ trực tiếp giải quyết và quyết định của Công ty cổ phần VTC Dịch vụ di động là kết quả cuối cùng. Mọi trường hợp gian lận hoặc không trung thực sẽ bị xử lý theo pháp luật.
+
+
+				</p>
+						
+					</div>
 
 					</div>
 				</div>
