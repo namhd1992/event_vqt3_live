@@ -312,7 +312,7 @@ class Lucky_Rotation extends React.Component {
 			this.setState({ width: 504, height: 563, img_width:405, img_height:405});
 		}
 		if (window.innerWidth >= 1024) {
-			this.setState({ width: 590, height: 655, img_width:475, img_height:475});
+			this.setState({ width: 586, height: 657, img_width:470, img_height:470});
 		}
 	}
 
@@ -1665,7 +1665,8 @@ class Lucky_Rotation extends React.Component {
 							</div> 
 							<h5 class="text-thele lead text-center text-danger mt-3">Bạn vừa quay vào ô Mất lượt!</h5>
 							<p class="text-center text-secondary">Bạn còn <span class="text-primary h5">{minute_live} : {second_live}</span> nữa để có thể quay tiếp. Vui lòng chờ…</p>  
-							{(timeWaiting===-1)?(<a type="button"class="btn btn-xacnhan text-white btn-block text-center py-2" onClick={this.closeMatLuot}>Đóng</a>):(<div></div>)}
+							<a type="button"class="btn btn-xacnhan text-white btn-block text-center py-2" onClick={this.closeMatLuot}>Đóng</a>
+							{/* {(timeWaiting===-1)?(<a type="button"class="btn btn-xacnhan text-white btn-block text-center py-2" onClick={this.closeMatLuot}>Đóng</a>):(<div></div>)} */}
 						</div>
 
 						</div>
