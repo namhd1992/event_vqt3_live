@@ -235,7 +235,6 @@ class Lucky_Rotation extends React.Component {
 			'textLineWidth'     : 2,
 			'responsive'   : true,
 			'textFillStyle'     : 'white',
-
 			'animation' :                 
 			{
 				'type'     : 'spinToStop',
@@ -300,7 +299,7 @@ class Lucky_Rotation extends React.Component {
 			this.setState({ width: 293, height: 330, img_width:235, img_height:235});
 		}
 		if (window.innerWidth > 380 && window.innerWidth <= 480) {
-			this.setState({ width: 345, height: 383, img_width:275, img_height:275});
+			this.setState({ width: 344, height: 383, img_width:275, img_height:275});
 		}
 		if (window.innerWidth > 480 && window.innerWidth <= 600) {
 			this.setState({ width: 335, height: 375, img_width:270, img_height:270});
