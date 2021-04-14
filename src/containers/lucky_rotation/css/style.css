@@ -42,7 +42,7 @@ html {scroll-behavior: smooth;}
 	opacity: 0.8;
 	cursor: pointer;
 }
-.btn-quay {width:200px; height: auto; position: absolute; bottom: 17%; right: 20%;}
+.btn-quay {width:200px; height: auto; position: absolute; bottom: 16%; right: 18%;}
 .btn-quay img {width: 180px; padding-left: 20px;}
 .btn-quay .custom-control {font-size: 22px; padding-left: 30px; color:#565656}
 .hv:hover{
@@ -275,7 +275,7 @@ a.btn-dv:hover {color: #ffd102;}
 }
 @media (max-width: 380px) {
 	.content-inner-p1 {background-position: center bottom; height: 620px; background-size: 160%;}
-	.vqmm {position: absolute; top: 15%; left: 18%; width: 300px}
+	.vqmm {position: absolute; top: 18%; left: 12%; width: 350px}
 	.page2 {background-position: 35% 10%; background-size: 180%;}
 	.content-inner-p2 {height: 600px;}
 	.logo-p2 {top: 3%; left: 5%; width: 250px;}
