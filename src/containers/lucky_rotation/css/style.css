@@ -35,7 +35,7 @@ html {scroll-behavior: smooth;}
 .content-inner-p2 {height: 1100px; width: 100%; position: relative !important; background-image:url(../images/bg2-p2.png); background-size: 90%; background-position: 10% 60%; background-repeat: no-repeat; overflow:hidden;}
 .logo-p2 {position: absolute; top: 17%; left: 8%; z-index: 99}
 .vqmm {position: absolute; top: 30%; left: 10%; width: 700px; background-image:url(../images/vqmm-p2.png); background-repeat: no-repeat; background-repeat:'none';background-size: 100%; background-position: 'center'}
-.btn-logout{position: absolute; top: 11%; right: 9%; font-size:1.25rem; color:#282652;}
+.btn-logout{position: absolute; top: 17%; right: 9%; font-size:1.25rem; color:#282652;}
 .btn-logout h5 {background-image:url(../images/btn-dangxuat-p2.png); background-repeat: no-repeat; background-size: 100%; width: 150px; height: 55px;margin: 0 auto;}
 .btn-logout h5 a {line-height: 50px; color:#282652;}
 .btn-logout h5:hover{
@@ -246,7 +246,7 @@ a.btn-dv:hover {color: #ffd102;}
 	.display-3 {font-size: 3.2rem;}
 	.timer-p1.float-right {float:none !important}
 	.btn-thamgiangay {position: absolute; bottom: 40px; width: 120px;}
-	.btn-logout {position: absolute; top: 1%; right: 1%; font-size:14px;}
+	.btn-logout {position: absolute; top: 4%; right: 1%; font-size:14px;}
 	.btn-logout h5 {width: 80px; margin: 0 auto; display: block}
 	.btn-logout h5 a {line-height: 28px; font-size:14px}	
 	.logo-p2 {top: 3%; left: 10%; width: 260px;}
