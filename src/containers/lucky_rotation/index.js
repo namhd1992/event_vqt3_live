@@ -911,7 +911,7 @@ class Lucky_Rotation extends React.Component {
 				<div className="container content-inner-p2">
 					<h1 id="logo-p2" className="logo-p2"><img src={logo} alt="Logo" width="400" className="img-fluid" /></h1>
 					<div className="vqmm">
-							<canvas style={{}} id="canvas" width={width} height={height} data-responsiveMinWidth="180"  data-responsiveScaleHeight="true">		
+							<canvas style={{}} id="canvas" width={width} height={height} data-responsiveMinWidth="10"  data-responsiveScaleHeight="true">		
 							</canvas>
 							{/* <canvas style={{marginTop:-(height+15), padding:0}} id="new_canvas" width={width} height={height} data-responsiveMinWidth="180"  data-responsiveScaleHeight="true">
 								
