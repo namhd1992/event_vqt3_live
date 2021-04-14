@@ -221,7 +221,6 @@ a.btn-dv:hover {color: #ffd102;}
 	.pag-custom .page-be {font-size: 14px; padding:5px 2px;}
 	.content-chucmung {width: 200px; height: 270px; padding-top: 75px;}
 	.text-chucmung {background-color: #fda817; border-radius: 4px; padding: 8px 0;}
-	.btn-xacnhan {background-size: 80px; width: 100px; margin: 0 auto;}
 	.popup-phanthuong .bg-chucmung {width: 100%}
 	.text-chucmung img {width: 80px}
 	.tbl-bvd {width: 900px !important;}
@@ -270,6 +269,7 @@ a.btn-dv:hover {color: #ffd102;}
 	.text-popup-phanthuong {font-size: 11px}
 	.noti-mdt {top: 45%; right: 15%;}
 	.noti-tudo {top: 13%; right: 15%;}
+	
 	 /* .mstt {width: 75%;} */
 	 /* .bg-ketquaquayso {height: 250px;} */
 }
