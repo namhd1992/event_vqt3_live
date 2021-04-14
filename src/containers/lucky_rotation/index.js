@@ -1154,7 +1154,7 @@ class Lucky_Rotation extends React.Component {
 				<p class="text-thele pl-3 font-italic mark">* Lưu ý: <br />
 
 				&bull; Các giải thưởng được lưu lại trong Tủ đồ, Khách hàng click vào Tủ đồ để xem lại và sử dụng. <br />
-				&bull; Giải thưởng thẻ scoin và thẻ voucher có hiệu lực trong vòng 1 tháng kể từ thời điểm kết thúc sự kiện. Hết thời gian kể trên, giải thưởng không còn giá trị. <br />
+				&bull; Giải thưởng thẻ voucher có hiệu lực trong vòng 1 tháng kể từ thời điểm kết thúc sự kiện. Hết thời gian kể trên, giải thưởng không còn giá trị. <br />
 				&bull; Toàn bộ giải thưởng không được quy đổi thành tiền mặt.</p>
 
 
@@ -1319,7 +1319,7 @@ class Lucky_Rotation extends React.Component {
 							</div>):(<div></div>)}
 							{(dataItem.Type==='BankTransferVoucher')?(<div class="card bg-light mx-auto" style={{width:300}}>
 								<div class="card-body text-center">
-								<p class="card-text mb-3 text-primary h4">Tài khoản <span class="text-danger">{dataItem.AccountName}</span> nhận được thẻ Scoin Voucher 20K khi nạp Scoin qua Chuyển khoản Ngân hàng. </p>
+								<p class="card-text mb-3 text-primary h4">Tài khoản <span class="text-danger">{dataItem.AccountName}</span> nhận được Scoin Voucher 20K khi nạp Scoin qua Chuyển khoản Ngân hàng. </p>
                     			<p class="card-text border-bottom text-dark mb-3 h5">Bạn hãy nạp Scoin để nhận khuyến mại nhé!</p>
 								<p class="card-text text-secondary">Hết hạn: {dataItem.ExpiredDate}</p>
 								<div class="modal-footer justify-content-center">
