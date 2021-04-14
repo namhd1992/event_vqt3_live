@@ -19,7 +19,7 @@ html {scroll-behavior: smooth;}
 .display-5 {font-size: 2.6rem;}
 .display-6 {font-size: 2.6rem;}
 .btn-thamgiangay {position: absolute; bottom: 20px; display: block; left: 50%; transform: translate(-50%, 0); padding-bottom: 140px;}
-.position-absolute-p1 {position:fixed; left:0; top: 15%; background:url(../images/bg-btn-float-right.png) no-repeat; width: 84px; height: 420px; z-index: 9999}
+.position-absolute-p1 {position:fixed; left:0; top: 15%; background:url(../images/bg-btn-float-right.png) no-repeat; width: 84px; height: 420px; z-index: 1000}
 .menu-left-p1 li {width: 60px; margin: 0 auto; display: block; text-align: center}
 .menu-left-p1 li a {color:#FFFFFF; font-size: 20px; line-height:0; padding-top:20px;}
 .pt-6 {padding-top: 4rem !important}
