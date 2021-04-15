@@ -156,6 +156,7 @@ class Lucky_Rotation extends React.Component {
 	}
 	componentWillMount(){
 		console.log(this.props.waiting)
+		window.addEventListener("resize", this.setScreenOrientation);
 		// if (window.innerWidth <= 320) {
 		// 	this.setState({ width: 242, height: 378, img_width:280, img_height:280});
 		// }
@@ -268,6 +269,9 @@ class Lucky_Rotation extends React.Component {
 	componentWillUnmount() {
 		clearInterval(this.state.intervalId);
 		this.setState({ auto : !this.state.auto});
+	}
+	setScreenOrientation=()=>{
+		window.location.reload();
 	}
 
 	// onResize=()=>{
