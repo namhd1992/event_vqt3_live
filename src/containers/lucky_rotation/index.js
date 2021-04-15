@@ -275,8 +275,9 @@ class Lucky_Rotation extends React.Component {
 	}
 	setScreenOrientation=()=>{
 		const {innerWidth}=this.state;
-		if(Math.abs(innerWidth - window.innerWidth) >150){
+		if(Math.abs(innerWidth - window.innerWidth) >100){
 			window.location.reload();
+			this.setState({innerWidth:window.innerWidth})
 		}
 		// window.location.reload();
 	}
@@ -306,7 +307,10 @@ class Lucky_Rotation extends React.Component {
 		if (window.innerWidth <= 320) {
 			this.setState({ width: 210, height: 235, img_width:170, img_height:170});
 		}
-		if (window.innerWidth > 320 && window.innerWidth <= 380) {
+		if (window.innerWidth > 320 && window.innerWidth <= 360) {
+			this.setState({ width: 252, height: 282, img_width:200, img_height:200});
+		}
+		if (window.innerWidth > 360 && window.innerWidth <= 380) {
 			this.setState({ width: 293, height: 330, img_width:235, img_height:235});
 		}
 		if (window.innerWidth > 380 && window.innerWidth <= 480) {
