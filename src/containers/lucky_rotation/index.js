@@ -463,7 +463,9 @@ class Lucky_Rotation extends React.Component {
 					$('#myModal6').modal('show');
 				}
 			}else{
-				$('#activeVip').modal('show');
+				this.setState({startSpin:false},()=>{
+					$('#activeVip').modal('show');
+				})
 			}
 		} else {
 			$('#myModal5').modal('show');
