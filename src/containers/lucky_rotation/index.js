@@ -151,12 +151,13 @@ class Lucky_Rotation extends React.Component {
 			startSpin:false,
 			len_auto:0,
 			waiting:false,
-			urlVideo:''
+			urlVideo:'',
+			innerWidth:0
 		};
 	}
 	componentWillMount(){
-		console.log(this.props.waiting)
-		window.addEventListener("resize", this.setScreenOrientation);
+		// console.log(this.props.waiting)
+		
 		// if (window.innerWidth <= 320) {
 		// 	this.setState({ width: 242, height: 378, img_width:280, img_height:280});
 		// }
@@ -176,8 +177,10 @@ class Lucky_Rotation extends React.Component {
 		// 	this.setState({ width: 645, height: 830, img_width:752, img_height:752});
 		// }
 
-		this.onResize()
+		this.onResize();
+		window.addEventListener("resize", this.setScreenOrientation);
 		window.removeEventListener('scroll', this.handleScroll);
+		this.setState({innerWidth:window.innerWidth})
 	}
 
 
@@ -271,7 +274,12 @@ class Lucky_Rotation extends React.Component {
 		this.setState({ auto : !this.state.auto});
 	}
 	setScreenOrientation=()=>{
-		window.location.reload();
+		const {innerWidth}=this.state;
+		if(Math.abs((innerWidth - window.innerWidth) >150)){
+			window.location.reload();
+		}
+		console.log("innerWidth:", window.innerWidth)
+		// window.location.reload();
 	}
 
 	// onResize=()=>{
