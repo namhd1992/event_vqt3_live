@@ -275,7 +275,7 @@ class Lucky_Rotation extends React.Component {
 	}
 	setScreenOrientation=()=>{
 		const {innerWidth}=this.state;
-		if(Math.abs(innerWidth - window.innerWidth) >70){
+		if(Math.abs(innerWidth - window.innerWidth) >100){
 			window.location.reload();
 			this.setState({innerWidth:window.innerWidth})
 		}
@@ -662,6 +662,7 @@ class Lucky_Rotation extends React.Component {
 
 
 	closeMatLuot=()=>{
+		clearInterval(this.state.intervalWaiting);
 		$('#matluot').modal('hide'); 
 	}
 	showModalBonus=()=>{
@@ -1668,10 +1669,8 @@ class Lucky_Rotation extends React.Component {
 							<div className="table-responsive mt-2">              
 								<h5 className="text-thele lead text-center">{message_error}</h5>
 								<h5 className="text-thele lead text-center">Thời gian còn lại: {minute_live} : {second_live}</h5>
-
 							</div>       
 						</div>
-
 						</div>
 					</div>
 				</div> */}
