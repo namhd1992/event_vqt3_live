@@ -1339,7 +1339,7 @@ class Lucky_Rotation extends React.Component {
 							</div>):(<div></div>)}
 							{(dataItem.Type==='ScoinVoucher')?(<div class="card bg-light mx-auto" style={{width:300}}>
 								<div class="card-body text-center">
-								<p class="card-text text-primary mb-3 h4">Thẻ Scoin mệnh giá: <br /> {dataItem.Amount ? this.numberWithCommas(dataItem.Amount) : 0} vnđ</p>
+								<p class="card-text text-primary mb-3 h4">Thẻ ScoinVoucher mệnh giá: <br /> {dataItem.Amount ? this.numberWithCommas(dataItem.Amount) : 0} vnđ</p>
 								<p class="card-text border-bottom text-dark mb-3 h5">Mã code: {dataItem.Code}</p>
 								<p class="card-text border-bottom text-dark mb-3 h5">Serial: {dataItem.Serial}</p>
 								<p class="card-text text-secondary">Ngày bắt đầu: {dataItem.StartDate} <br />Ngày kết thúc: {dataItem.EndDate}</p>
