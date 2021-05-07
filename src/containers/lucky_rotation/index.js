@@ -19,7 +19,8 @@ import {
 	getInfoUser,
 	userLogout,
 	getDataUserSpin,
-	getItemAward
+	getItemAward,
+	getItemAwardSpecial
 } from '../../modules/lucky'
 import Wheel from './Winwheel'
 import {
@@ -152,7 +153,8 @@ class Lucky_Rotation extends React.Component {
 			len_auto:0,
 			waiting:false,
 			urlVideo:'',
-			innerWidth:0
+			innerWidth:0,
+			itemSpecial:{}
 		};
 	}
 	componentWillMount(){
@@ -203,6 +205,16 @@ class Lucky_Rotation extends React.Component {
 			if(data!==undefined){
 				if(data.Status===0){
 					this.setState({itemOfSpin: data.Data})
+				}
+			}
+		})
+
+		this.props.getItemAwardSpecial().then(()=>{
+			var data=this.props.dataItemAwardSpecial;
+			console.log('AAAAAAA', data)
+			if(data!==undefined){
+				if(data.Status===0){
+					this.setState({itemSpecial: data.Data})
 				}
 			}
 		})
@@ -898,7 +910,7 @@ class Lucky_Rotation extends React.Component {
 		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	}
 	render() {
-		const {xacthuc,urlVideo,timeWaiting, scoinCard,height, width, dialogLoginOpen, dialogBonus, auto, dialogWarning, textWarning, isLogin, userTurnSpin, day, hour, minute, second,len_auto, code,numberPage, img_status, message_status, data_auto,message_error,linkLiveStream,dataItem,startSpin,
+		const {itemSpecial,xacthuc,urlVideo,timeWaiting, scoinCard,height, width, dialogLoginOpen, dialogBonus, auto, dialogWarning, textWarning, isLogin, userTurnSpin, day, hour, minute, second,len_auto, code,numberPage, img_status, message_status, data_auto,message_error,linkLiveStream,dataItem,startSpin,
 			waiting, activeTuDo, activeHistory, activeCodeBonus, activeVinhDanh, limit, countCodeBonus, countTuDo, countHistory, countVinhDanh, listHistory, listCodeBonus, listTuDo, listVinhDanh,itemBonus, turnsFree, noti_mdt, noti_tudo, hour_live, minute_live, second_live, isLive, user}=this.state;
 		const { classes } = this.props;
 		const notification_mdt=noti_mdt?(<span className="badge badge-pill badge-danger position-absolute noti-mdt">!</span>):(<span></span>);
@@ -992,20 +1004,27 @@ class Lucky_Rotation extends React.Component {
 				<div className="table-responsive giaithuong-pc">
 					<table className="table table-borderless tbl-bvd mx-auto text-center">
 						<thead>
-						<tr className="text-uppercase title-bvd">
-							<th></th>
-							<th>Tên</th>
-							<th>Phần thưởng</th>
-							<th>Thời gian trúng</th>
-						</tr>
+							<tr className="text-uppercase title-bvd">
+								<th></th>
+								<th>Tên</th>
+								<th>Phần thưởng</th>
+								<th>Thời gian trúng</th>
+							</tr>
 						</thead>
 						<tbody className="top-12">
-						<tr>
-							<td></td>
-							<td>*******</td>
-							<td>iPhone 12 Pro Max 256GB</td>
-							<td>*******</td>
-						</tr>
+							{(Object.keys(itemSpecial).length !== 0)?(<tr>
+								<td></td>
+								<td>{itemSpecial.Username}</td>
+								<td>{itemSpecial.AwardName}</td>
+								<td>{this.timeConverter(itemSpecial.SpinTime)}</td>
+							</tr>):(<tr>
+								<td></td>
+								<td>*******</td>
+								<td>Giải Đặc Biệt - iPhone 12 Pro Max</td>
+								<td>*******</td>
+							</tr>)}
+
+							
 						</tbody>
 					</table>
 					<table className="table table-bordered tbl-bvd mx-auto text-center">            
@@ -1037,11 +1056,19 @@ class Lucky_Rotation extends React.Component {
 					<table class="table table-borderless mx-auto">
 						<thead>
 						<tr class="badge-warning border">
-							<th>
-								<p class="mb-0">Tên: <span class="h4 text-danger">*******</span></p>
-								<p class="mb-0">Giải thưởng: <span class="h4 text-danger">iPhone 12 Pro Max 256GB</span></p>
-								<p class="mb-0">Thời gian trúng: <span class="h4 text-danger">*******</span></p>
-							</th>
+							{(Object.keys(itemSpecial).length !== 0)?(<tr>
+									<th>
+										<p class="mb-0">Tên: <span class="h4 text-danger">{itemSpecial.Username}</span></p>
+										<p class="mb-0">Giải thưởng: <span class="h4 text-danger">{itemSpecial.AwardName}</span></p>
+										<p class="mb-0">Thời gian trúng: <span class="h4 text-danger">{this.timeConverter(itemSpecial.SpinTime)}</span></p>
+									</th>
+								</tr>):(<tr>
+									<th>
+										<p class="mb-0">Tên: <span class="h4 text-danger">*******</span></p>
+										<p class="mb-0">Giải thưởng: <span class="h4 text-danger">Giải Đặc Biệt - iPhone 12 Pro Max</span></p>
+										<p class="mb-0">Thời gian trúng: <span class="h4 text-danger">*******</span></p>
+									</th>
+								</tr>)}
 						</tr>
 						</thead>
 					</table>
@@ -1861,6 +1888,7 @@ const mapStateToProps = state => ({
 	dataDetail: state.lucky.dataDetail,
 	dataTurn: state.lucky.dataTurn,
 	dataTuDo: state.lucky.dataTuDo,
+	dataItemAwardSpecial:state.lucky.dataItemAwardSpecial,
 	dataHistoryTuDo: state.lucky.dataHistoryTuDo,
 	dataVinhDanh: state.lucky.dataVinhDanh,
 	dataCodeBonus: state.lucky.dataCodeBonus,
@@ -1884,7 +1912,8 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 	getLuckyInfo,
 	getLuckyItems,
 	userLogout,
-	getDataUserSpin
+	getDataUserSpin,
+	getItemAwardSpecial
 }, dispatch)
 
 

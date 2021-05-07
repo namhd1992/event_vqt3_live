@@ -19,6 +19,7 @@ export const LUCKY_ITEMS='lucky/LUCKY_ITEMS'
 export const INFO_USER_RESPONSE='lucky/INFO_USER_RESPONSE'
 export const DATA_USER_SPIN='lucky/DATA_USER_SPIN';
 export const ITEM_AWARD='lucky/ITEM_AWARD';
+export const ITEM_AWARD_SPECIAL='lucky/ITEM_AWARD_SPECIAL';
 
 const initialState = {
 	data: [], 
@@ -134,6 +135,12 @@ export default (state = initialState, action) => {
 			return {
 				...state,
 				dataItemAward: action.data,
+				waiting: false
+			}
+		case ITEM_AWARD_SPECIAL:
+			return {
+				...state,
+				dataItemAwardSpecial: action.data,
 				waiting: false
 			}
 		default:
@@ -368,6 +375,26 @@ export const getItemAward = (token, award_id) => {
 		return axios.get(url, header).then(function (response) {
 			dispatch({
 				type: ITEM_AWARD,
+				data: response.data
+			})
+		}).catch(function (error) {
+			dispatch({
+				type: SERVER_ERROR
+			})
+		})
+	}
+}
+
+export const getItemAwardSpecial = () => {
+
+	return dispatch => {
+		dispatch({
+			type: LUCKY_REQUEST
+		})
+		var url = Ultilities.base_url() + "luckywheel/special-award";
+		return axios.get(url).then(function (response) {
+			dispatch({
+				type: ITEM_AWARD_SPECIAL,
 				data: response.data
 			})
 		}).catch(function (error) {
