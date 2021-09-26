@@ -5,14 +5,9 @@ import axios from 'axios';
 import { connect } from 'react-redux'
 import './css/style.css';
 import {
-	getDetailData,
-	getRotationDetailData,
-	getRotationDetailDataUser,
 	pickCard,
-	buyTurn,
 	getTuDo,
 	getHistoryTuDo,
-	getCodeBonus,
 	getVinhDanh,
 	getLuckyInfo,
 	getLuckyItems,
@@ -799,31 +794,6 @@ class Lucky_Rotation extends React.Component {
 		$('#myModal2').modal('hide');
 	}
 
-	showModalCodeBonus=()=>{
-		const {luckySpin, offsetCode, limit}=this.state;
-		var user = JSON.parse(localStorage.getItem("user"));
-		if(user !== null){
-			this.props.getCodeBonus(user.Token, luckySpin.id, 'LUCKY_NUMBER').then(()=>{
-				var data=this.props.dataCodeBonus;
-				if(data!==undefined){
-					if(data.status==='01'){
-						console.log(data.data)
-						this.setState({dataCodeBonus:data.data, countCodeBonus:data.data.length, listCodeBonus: data.data.slice(0,5), noti_mdt:false})
-					}else{
-						$('#myModal11').modal('show');
-						this.setState({message_error:'Chưa tải được dữ liệu. Vui lòng thử lại'})
-					}
-				}else{
-					$('#myModal12').modal('show');
-					this.setState({server_err:true})
-				}
-			});
-			$('#myModal4').modal('hide');
-			$('#myModal3').modal('show');
-		}else {
-			$('#myModal5').modal('show');
-		}
-	}
 
 	closePopupAuto=()=>{
 		clearInterval(this.state.intervalId);
@@ -1897,17 +1867,12 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-	getDetailData,
-	getRotationDetailData,
-	getRotationDetailDataUser,
 	pickCard,
 	getInfoUser,
-	buyTurn,
 	getItemAward,
 	getHistoryTuDo,
 	getData,
 	getTuDo,
-	getCodeBonus,
 	getVinhDanh,
 	getLuckyInfo,
 	getLuckyItems,
